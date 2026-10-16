@@ -134,10 +134,10 @@ function PriceCard({ j, lodgeNames }: { j: Journey; lodgeNames: Record<string, s
             Trip dates
           </button>
           <Link href={`/journeys/${j.slug}`} className="flex h-12 items-center justify-center rounded-[2px] bg-glacier text-[12px] font-medium transition-colors hover:bg-atlantic hover:text-white">
-            More info
+            More info<span className="sr-only"> about {j.title}</span>
           </Link>
           <Link href={`/enquire?journey=${j.slug}`} className="flex h-12 items-center justify-center rounded-[2px] bg-aurora text-[12px] font-medium text-white transition-colors hover:bg-atlantic">
-            Start planning
+            Start planning<span className="sr-only">: {j.title}</span>
           </Link>
         </div>
       </div>

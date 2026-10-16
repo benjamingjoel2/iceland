@@ -1,8 +1,9 @@
 "use client";
 
+import { useReducedMotion } from "@/lib/useReducedMotion";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import type { Img, Lodge } from "@/data/types";
 import { formatCoordinates } from "@/data/lodges";

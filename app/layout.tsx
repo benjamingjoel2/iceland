@@ -8,15 +8,15 @@ import { Footer } from "@/components/layout/Footer";
 import { HowItWorks } from "@/components/layout/HowItWorks";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 
-const oswald = Oswald({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-oswald", display: "swap" });
+// Variable fonts, Latin subset only (it covers Icelandic: þ ð æ ö á é í ó ú ý).
+const oswald = Oswald({ subsets: ["latin"], variable: "--font-oswald", display: "swap" });
 const cormorant = Cormorant_Garamond({
-  subsets: ["latin", "latin-ext"],
-  weight: ["400", "500"],
+  subsets: ["latin"],
   style: ["normal", "italic"],
   variable: "--font-cormorant",
   display: "swap",
 });
-const interTight = Inter_Tight({ subsets: ["latin", "latin-ext"], weight: ["400", "500", "600"], variable: "--font-inter-tight", display: "swap" });
+const interTight = Inter_Tight({ subsets: ["latin"], variable: "--font-inter-tight", display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(brand.url),

@@ -1,7 +1,8 @@
 "use client";
 
+import { useReducedMotion } from "@/lib/useReducedMotion";
 import Image from "next/image";
-import { motion, useMotionValueEvent, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
 import { gateway } from "@/data/gateway";
 import { images } from "@/data/images";
@@ -100,7 +101,7 @@ export function FlightRoute() {
           <svg
             viewBox="0 0 1000 700"
             preserveAspectRatio="xMidYMid meet"
-            className="absolute inset-0 h-full w-full"
+            className="absolute inset-x-0 top-[8vh] h-[60%] w-full md:inset-0 md:h-full"
             role="img"
             aria-label="Stylised map of the North Atlantic showing flight routes from London and New York to Keflavík"
           >
@@ -167,18 +168,18 @@ export function FlightRoute() {
           </svg>
 
           {/* Stats card */}
-          <div className="absolute left-3 top-[14vh] z-10 w-[min(440px,calc(100vw-24px))] rounded-[6px] bg-basalt/70 p-6 backdrop-blur-md md:left-5 md:top-[18vh] md:p-7">
+          <div className="absolute bottom-4 left-3 z-10 w-[min(440px,calc(100vw-24px))] rounded-[6px] bg-basalt/70 p-4 backdrop-blur-md md:bottom-auto md:left-5 md:top-[18vh] md:p-7">
             {gateway.stats.map((s, i) => (
-              <div key={s.label} className={i > 0 ? "mt-5 border-t border-white/10 pt-5" : ""}>
+              <div key={s.label} className={i > 0 ? "mt-3 border-t border-white/10 pt-3 md:mt-5 md:pt-5" : ""}>
                 <p className="t-eyebrow text-[14px] text-white/70">{s.label}</p>
                 {s.values.map((v) => (
-                  <p key={v} className="mt-1 text-[clamp(1.05rem,1.6vw,1.5rem)] font-normal uppercase leading-snug">
+                  <p key={v} className="mt-0.5 text-[0.85rem] font-normal uppercase leading-snug md:mt-1 md:text-[clamp(1.05rem,1.6vw,1.5rem)]">
                     {v}
                   </p>
                 ))}
               </div>
             ))}
-            <div className="mt-5">
+            <div className="mt-3 md:mt-5">
               <VerifyFlag note={gateway.verify} tone="dark" />
             </div>
           </div>

@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion, useTransform, type MotionValue } from "framer-motion";
+import { useReducedMotion } from "@/lib/useReducedMotion";
+import { motion, useTransform, type MotionValue } from "framer-motion";
 
 /**
  * Three parallax cloud layers (our own generated textures in /public/mist).
@@ -12,8 +13,8 @@ export function CloudLayers({ progress, className = "" }: { progress: MotionValu
   const y1 = useTransform(progress, [0, 1], ["35%", "-25%"]);
   const y2 = useTransform(progress, [0, 1], ["55%", "-10%"]);
   const y3 = useTransform(progress, [0, 1], ["75%", "0%"]);
-  const o1 = useTransform(progress, [0, 0.35, 1], [0.35, 0.9, 1]);
-  const o2 = useTransform(progress, [0, 0.4, 1], [0.2, 0.85, 1]);
+  const o1 = useTransform(progress, [0, 0.02, 0.35, 1], [0, 0.35, 0.9, 1]);
+  const o2 = useTransform(progress, [0, 0.02, 0.4, 1], [0, 0.2, 0.85, 1]);
   const o3 = useTransform(progress, [0, 0.5, 1], [0, 0.9, 1]);
   const layers = [
     { y: y1, o: o1, src: "/mist/cloud-1.webp", anim: "drift 38s ease-in-out infinite alternate", h: "70%" },

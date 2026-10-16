@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { useReducedMotion } from "@/lib/useReducedMotion";
+import { motion} from "framer-motion";
 
 /** Hand-drawn underline that draws itself when scrolled into view (our own path). */
 export function Scribble({ className = "", tone = "dark" }: { className?: string; tone?: "dark" | "light" }) {

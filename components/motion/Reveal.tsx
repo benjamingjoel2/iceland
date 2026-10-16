@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { useReducedMotion } from "@/lib/useReducedMotion";
+import { motion} from "framer-motion";
 
 /** Calm fade-and-rise used throughout, matching the reference's slow text reveals. */
 export function Reveal({

@@ -1,8 +1,9 @@
 "use client";
 
+import { useReducedMotion } from "@/lib/useReducedMotion";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion} from "framer-motion";
 import { useEffect, useState } from "react";
 import type { Journey } from "@/data/types";
 import { seasonLabel } from "@/data/seasons";

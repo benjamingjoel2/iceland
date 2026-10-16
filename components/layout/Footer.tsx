@@ -15,7 +15,7 @@ const linkCls = "t-body text-slate transition-colors hover:text-atlantic";
 function Col({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="mb-7">
-      <h3 className="t-eyebrow mb-1.5 text-atlantic">{title}</h3>
+      <h2 className="t-eyebrow mb-1.5 text-atlantic">{title}</h2>
       {children}
     </div>
   );
@@ -128,7 +128,7 @@ export function Footer() {
         <div className="mt-6 grid grid-cols-1 items-center gap-6 border-t border-atlantic/10 py-6 md:grid-cols-3">
           <ul className="flex flex-wrap items-center gap-2" aria-label="Licences and awards (placeholders)">
             {badges.map((b, i) => (
-              <li key={i} title={`${b} — placeholder`} className="flex h-10 w-10 items-center justify-center rounded-full border border-dashed border-atlantic/30 text-center text-[7px] font-semibold uppercase leading-tight text-atlantic/60">
+              <li key={i} title={`${b} — placeholder`} className="flex h-10 w-10 items-center justify-center rounded-full border border-dashed border-atlantic/30 text-center text-[7px] font-semibold uppercase leading-tight text-atlantic">
                 {b}
               </li>
             ))}

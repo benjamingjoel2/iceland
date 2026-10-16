@@ -65,7 +65,7 @@ export default function AboutPage() {
       <section className="relative flex h-[100svh] items-center justify-center overflow-hidden text-white">
         <Image src={images.aboveClouds.src} alt={images.aboveClouds.alt} fill sizes="100vw" className="object-cover" />
         <div className="absolute inset-0 bg-atlantic/35" />
-        <Reveal className="relative z-10 max-w-[22ch] px-6 text-center">
+        <Reveal className="relative z-10 max-w-[44rem] px-6 text-center">
           <p className="t-h3">Private by design, responsible by principle: small footprints, local guides, and places left as we found them.</p>
         </Reveal>
       </section>

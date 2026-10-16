@@ -24,7 +24,7 @@ export const palette = {
   volcanic: "#0B0D10", // volcanic black – dark sections
   basalt: "#2B3036", // basalt grey – dark cards
   slate: "#5A6068", // muted text
-  aurora: "#1C8C68", // aurora green – sparing accent fill (AA with white text)
+  aurora: "#177A5A", // aurora green – sparing accent fill (AA with white text)
   auroraGlow: "#3FD8A0", // aurora glow – lines, dots on dark
 } as const;
 

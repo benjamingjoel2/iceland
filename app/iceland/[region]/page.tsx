@@ -107,7 +107,7 @@ export default async function RegionPage({ params }: PageProps<"/iceland/[region
 
       <FourUp
         title={related.length ? <>Journeys<br />through here</> : <>More<br />journeys</>}
-        items={(related.length ? related : journeys).slice(0, 4).map((j) => ({ image: j.card, label: j.title, href: `/journeys/${j.slug}` }))}
+        items={[...related, ...journeys.filter((j) => !related.includes(j))].slice(0, 4).map((j) => ({ image: j.card, label: j.title, href: `/journeys/${j.slug}` }))}
       />
       <CtaBanner image={images.mistyPeaks} />
     </>

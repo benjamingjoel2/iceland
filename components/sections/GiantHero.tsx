@@ -1,8 +1,9 @@
 "use client";
 
+import { useReducedMotion } from "@/lib/useReducedMotion";
 import Image from "next/image";
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { brand } from "@/config/site";
 import { film, images } from "@/data/images";
 import { CloudLayers } from "@/components/motion/CloudLayers";
@@ -19,6 +20,20 @@ export function GiantHero({ word = "Iceland" }: { word?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
   const { openFilm } = useUI();
+  // Mount the background film only after the page has loaded, so it never competes
+  // with the poster, fonts and scripts on the critical path.
+  const [videoReady, setVideoReady] = useState(false);
+  useEffect(() => {
+    if (reduce) return;
+    let t: ReturnType<typeof setTimeout>;
+    const start = () => (t = setTimeout(() => setVideoReady(true), 400));
+    if (document.readyState === "complete") start();
+    else window.addEventListener("load", start, { once: true });
+    return () => {
+      window.removeEventListener("load", start);
+      clearTimeout(t);
+    };
+  }, [reduce]);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
 
   const mediaScale = useTransform(scrollYProgress, [0, 1], [1, 1.12]);
@@ -33,7 +48,7 @@ export function GiantHero({ word = "Iceland" }: { word?: string }) {
       <div className="sticky top-0 h-[100svh] overflow-hidden bg-[#9aa3a8]">
         <motion.div className="absolute inset-0" style={{ scale: reduce ? 1 : mediaScale }}>
           <Image src={film.poster} alt={images.auroraGreen.alt} fill priority sizes="100vw" className="object-cover" />
-          {!reduce ? (
+          {videoReady ? (
             <video
               className="absolute inset-0 h-full w-full object-cover"
               autoPlay

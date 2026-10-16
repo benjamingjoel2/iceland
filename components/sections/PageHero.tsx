@@ -1,7 +1,8 @@
 "use client";
 
+import { useReducedMotion } from "@/lib/useReducedMotion";
 import Image from "next/image";
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import type { Img } from "@/data/types";
 import { GridLines } from "@/components/ui/GridLines";
@@ -54,7 +55,7 @@ export function PageHero({
         <div className="absolute inset-0 animate-[slow-zoom_2.4s_cubic-bezier(.22,1,.36,1)_both]">
           <Image src={image.src} alt={image.alt} fill priority sizes="100vw" className="object-cover" />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-volcanic/35 via-volcanic/10 to-volcanic/35" />
+        <div className="absolute inset-0 bg-gradient-to-b from-volcanic/40 via-volcanic/25 to-volcanic/40" />
       </motion.div>
       <GridLines tone="light" />
 
