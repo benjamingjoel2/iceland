@@ -15,7 +15,20 @@ npm run dev      # http://localhost:3000
 npm run build && npm start
 ```
 
-Set `NEXT_PUBLIC_SITE_URL` to the production domain (used for canonical URLs, sitemap and Open Graph).
+Live at **https://edgeofnorth.tourground.com** (Vercel project `edge-of-north`; `tourground.com` DNS is on Vercel
+nameservers, so the subdomain is managed in Vercel, not GoDaddy). `NEXT_PUBLIC_SITE_URL` defaults to that URL.
+
+### Images
+
+Photos are **not** run through Vercel's image optimiser (its quota is shared across every tourground site).
+`scripts/make-responsive.py` pre-builds WebP files at 480/828/1200/1920px plus blur placeholders
+(`public/images/r/`, `data/blur.json`), and `lib/imageLoader.ts` points `next/image` at them. After adding or
+replacing a photo in `public/images/`, run `python3 scripts/make-responsive.py` and commit the output.
+
+### Email
+
+Addresses are `travel@`, `trade@` and `press@edgeofnorth.tourground.com` (`config/site.ts`). They only receive mail
+once the mail provider's MX (and SPF/DKIM) records for `edgeofnorth.tourground.com` are added in Vercel DNS.
 
 ## Where things live
 
@@ -26,7 +39,7 @@ Set `NEXT_PUBLIC_SITE_URL` to the production domain (used for canonical URLs, si
 | `content/journal/*.mdx` | Journal posts (each exports `metadata`) |
 | `app/` | Routes: `/`, `/journeys[/slug]`, `/lodges[/slug]`, `/iceland[/region]`, `/prices`, `/enquire`, `/about`, `/about/specialists`, `/faq`, `/legal/*`, `/journal[/slug]`, `/api/enquire` |
 | `components/` | `layout/` (header, flyouts, footer, How it works drawer, currency switcher, WhatsApp), `sections/` (page sections), `motion/` (mist, clouds, parallax, reveals), `ui/` |
-| `public/images` | Placeholder photography (Unsplash licence) — `scripts/fetch-images.sh` |
+| `public/images` | Placeholder photography (Unsplash licence) — `scripts/fetch-images.sh`; responsive WebP in `public/images/r` |
 | `public/mist` | Our own procedurally generated cloud/mist overlays — `scripts/make-mist.py` |
 | `public/film` | Placeholder brand film built from stills + English captions — `scripts/make-film.sh` |
 
@@ -37,7 +50,7 @@ Everything that must be checked or replaced is visibly flagged on the site ("Ver
 - **Season windows, access dates and regulations** (highland F-roads, ice caves, puffins, aurora, daylight, entry rules incl. EES/ETIAS) — verify with partners and official sources. Flip `features.etiasLive` in `config/site.ts` when ETIAS launches.
 - **Flight times, distances, temperatures** in `data/gateway.ts`.
 - **Placeholder names**: the three lodges, specialists, testimonials, all quotes (writer, closing, enquire, lodge press quotes).
-- **Contact details**: `[COMPANY NAME]`, registered office, phone, emails, WhatsApp `[NUMBER]`, Icelandic Tourist Board `[LICENSE NUMBER]`, schedule-a-call link, footer badges.
+- **Contact details**: `[COMPANY NAME]`, registered office, phone, email MX records, WhatsApp `[NUMBER]`, Icelandic Tourist Board `[LICENSE NUMBER]`, schedule-a-call link, footer badges.
 - **Prices** (base USD) and **FX rates** in `config/site.ts` (replace with a live feed or finance-set rates).
 - **Legal pages** — outlines only; need lawyer-drafted text.
 - **Imagery and film** — some stand-ins are not of the exact place/activity; replace with commissioned photography and the brand film.

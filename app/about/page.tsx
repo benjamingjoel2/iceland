@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/ui/Image";
 import { brand } from "@/config/site";
 import { images } from "@/data/images";
 import { people, specialistQuote, testimonials } from "@/data/people";

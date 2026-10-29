@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/ui/Image";
 import { journeys } from "@/data/journeys";
 import { images } from "@/data/images";
 import { quotes } from "@/data/people";

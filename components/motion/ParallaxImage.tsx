@@ -1,8 +1,8 @@
 "use client";
 
 import { useReducedMotion } from "@/lib/useReducedMotion";
-import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "@/components/ui/Image";
+import { m, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import type { Img } from "@/data/types";
 
@@ -26,9 +26,9 @@ export function ParallaxImage({
   const y = useTransform(scrollYProgress, [0, 1], [`-${amount}%`, `${amount}%`]);
   return (
     <div ref={ref} className={`relative overflow-hidden ${className}`}>
-      <motion.div className="absolute inset-[-12%_0]" style={{ y: reduce ? 0 : y }}>
+      <m.div className="absolute inset-[-12%_0]" style={{ y: reduce ? 0 : y }}>
         <Image src={image.src} alt={image.alt} fill sizes={sizes} priority={priority} className="object-cover" />
-      </motion.div>
+      </m.div>
     </div>
   );
 }

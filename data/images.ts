@@ -59,6 +59,8 @@ export const film = {
   src: "/film/edge-of-north.mp4",
   srcSmall: "/film/edge-of-north-sm.mp4",
   poster: "/film/poster.jpg",
+  /** Same frame, served through the responsive image pipeline for <Image>. */
+  posterImage: "/images/film-poster.jpg",
   captions: "/film/edge-of-north.en.vtt",
   title: "Edge of North — a film in six places (placeholder)",
 };

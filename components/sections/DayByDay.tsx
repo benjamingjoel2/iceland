@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/ui/Image";
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import type { Img } from "@/data/types";
 import { GridLines } from "@/components/ui/GridLines";
@@ -83,13 +83,13 @@ export function DayByDay({
               }}
               data-index={i}
               className={`flex min-h-[46vh] flex-col justify-between border-b border-white/10 bg-basalt p-6 transition-opacity duration-500 md:min-h-[52vh] md:p-8 ${
-                active === i ? "opacity-100" : "md:opacity-45"
+                active === i ? "opacity-100" : "md:opacity-80"
               }`}
             >
               <p className="font-serif text-[clamp(2rem,2.6vw,2.4rem)] italic leading-none">{d.n}</p>
               <div className="mt-10">
                 <h3 className="t-eyebrow mb-3 text-[17px]">{d.title}</h3>
-                <div className="t-body text-white/65">{d.body}</div>
+                <div className="t-body text-white/80">{d.body}</div>
                 {d.meta ? <div className="mt-4 text-[12px] text-white/80">{d.meta}</div> : null}
               </div>
               {/* Mobile image */}
@@ -103,7 +103,7 @@ export function DayByDay({
         <div className="hidden md:col-span-5 md:block">
           <div className="sticky top-[12vh] h-[76vh] overflow-hidden">
             <AnimatePresence mode="sync">
-              <motion.div
+              <m.div
                 key={active}
                 className="absolute inset-0"
                 initial={{ opacity: 0, scale: 1.04 }}
@@ -112,7 +112,7 @@ export function DayByDay({
                 transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Image src={items[active].image.src} alt={items[active].image.alt} fill sizes="40vw" className="object-cover" />
-              </motion.div>
+              </m.div>
             </AnimatePresence>
           </div>
         </div>

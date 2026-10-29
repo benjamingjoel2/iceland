@@ -1,7 +1,6 @@
 "use client";
 
-import Image from "next/image";
-import { motion } from "framer-motion";
+import Image from "@/components/ui/Image";
 import { useState } from "react";
 import type { Img } from "@/data/types";
 
@@ -13,18 +12,16 @@ export function ImageFlick({ images, className = "" }: { images: Img[]; classNam
       {images.map((img, i) => {
         const open = i === active;
         return (
-          <motion.button
+          <button
             type="button"
             key={img.src + i}
-            layout
             aria-label={`Show image: ${img.alt}`}
             aria-pressed={open}
             onMouseEnter={() => setActive(i)}
             onFocus={() => setActive(i)}
             onClick={() => setActive(i)}
             className="relative h-full min-w-0 overflow-hidden"
-            style={{ flexGrow: open ? 6 : 1, flexBasis: 0 }}
-            transition={{ duration: 0.9, ease: [0.65, 0, 0.35, 1] }}
+            style={{ flexGrow: open ? 6 : 1, flexBasis: 0, transition: "flex-grow 900ms cubic-bezier(.65,0,.35,1)" }}
           >
             <Image
               src={img.src}
@@ -33,7 +30,7 @@ export function ImageFlick({ images, className = "" }: { images: Img[]; classNam
               sizes="(min-width: 768px) 60vw, 100vw"
               className={`object-cover transition-[filter,transform] duration-[1200ms] ${open ? "blur-0" : "scale-110 blur-[10px]"}`}
             />
-          </motion.button>
+          </button>
         );
       })}
     </div>

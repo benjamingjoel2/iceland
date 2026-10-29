@@ -13,7 +13,7 @@ export const brand = {
     "Iceland at its most extraordinary, privately guided and planned by one dedicated specialist.",
   description:
     "Private, luxury journeys across Iceland: super-jeeps into the highlands, helicopters over glaciers, ice caves in winter, midnight sun in summer, and the finest lodges on the island.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://edge-of-north.vercel.app",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://edgeofnorth.tourground.com",
 } as const;
 
 /** Design tokens mirrored in app/globals.css (@theme). Keep the two in sync. */
@@ -53,9 +53,10 @@ export const contact = {
   phoneHref: "tel:+3540000000",
   whatsappNumber: "[NUMBER]", // digits only, international format, e.g. 3545550000
   emails: {
-    guests: "travel@edgeofnorth.example", // [PLACEHOLDER]
-    trade: "trade@edgeofnorth.example", // [PLACEHOLDER]
-    press: "press@edgeofnorth.example", // [PLACEHOLDER]
+    // Mailboxes on the brand subdomain — need MX records for edgeofnorth.tourground.com (see README).
+    guests: "travel@edgeofnorth.tourground.com",
+    trade: "trade@edgeofnorth.tourground.com",
+    press: "press@edgeofnorth.tourground.com",
   },
   office: "[Registered office address], Reykjavík, Iceland",
   license: "Icelandic Tourist Board travel licence no. [LICENSE NUMBER]",

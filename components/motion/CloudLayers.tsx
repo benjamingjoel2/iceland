@@ -1,7 +1,7 @@
 "use client";
 
 import { useReducedMotion } from "@/lib/useReducedMotion";
-import { motion, useTransform, type MotionValue } from "framer-motion";
+import { m, useTransform, type MotionValue } from "framer-motion";
 
 /**
  * Three parallax cloud layers (our own generated textures in /public/mist).
@@ -24,12 +24,12 @@ export function CloudLayers({ progress, className = "" }: { progress: MotionValu
   return (
     <div aria-hidden className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`}>
       {layers.map((l, i) => (
-        <motion.div key={i} className="absolute inset-x-[-12%] bottom-0" style={{ y: reduce ? 0 : l.y, opacity: l.o, height: l.h }}>
+        <m.div key={i} className="absolute inset-x-[-12%] bottom-0" style={{ y: reduce ? 0 : l.y, opacity: l.o, height: l.h }}>
           <div
             className="h-full w-full bg-[length:100%_100%] bg-no-repeat"
             style={{ backgroundImage: `url(${l.src})`, animation: reduce ? "none" : l.anim }}
           />
-        </motion.div>
+        </m.div>
       ))}
     </div>
   );

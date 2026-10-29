@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { useId, useRef, useState } from "react";
 import Link from "next/link";
 import { contact } from "@/config/site";
@@ -114,7 +114,7 @@ export function EnquiryForm({ journeys, initialJourney = "" }: { journeys: Journ
   return (
     <AnimatePresence mode="wait">
       {status === "done" ? (
-        <motion.div
+        <m.div
           key="done"
           role="status"
           className="mx-auto max-w-[34rem] py-10 text-center text-white"
@@ -136,9 +136,9 @@ export function EnquiryForm({ journeys, initialJourney = "" }: { journeys: Journ
               Read the journal
             </Link>
           </div>
-        </motion.div>
+        </m.div>
       ) : (
-        <motion.form
+        <m.form
           key="form"
           ref={formRef}
           noValidate
@@ -337,7 +337,7 @@ export function EnquiryForm({ journeys, initialJourney = "" }: { journeys: Journ
               We use your details only to plan your journey. See our <Link href="/legal/privacy" className="underline">privacy notice</Link>.
             </p>
           </div>
-        </motion.form>
+        </m.form>
       )}
     </AnimatePresence>
   );

@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useMemo, useState } from "react";
-import { MotionConfig } from "framer-motion";
+import { LazyMotion, MotionConfig, domAnimation } from "framer-motion";
 import { CurrencyProvider } from "@/lib/currency";
 import { FilmModal } from "@/components/ui/FilmModal";
 
@@ -29,6 +29,7 @@ export function UIProvider({ children }: { children: React.ReactNode }) {
     [filmOpen, howOpen],
   );
   return (
+    <LazyMotion features={domAnimation} strict>
     <MotionConfig reducedMotion="user">
       <CurrencyProvider>
         <UIContext.Provider value={value}>
@@ -37,6 +38,7 @@ export function UIProvider({ children }: { children: React.ReactNode }) {
         </UIContext.Provider>
       </CurrencyProvider>
     </MotionConfig>
+    </LazyMotion>
   );
 }
 

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/ui/Image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -178,7 +178,7 @@ export default async function JourneyPage({ params }: PageProps<"/journeys/[slug
             meta:
               d.stay === "—" ? null : (
                 <>
-                  <span className="text-white/50">Night: </span>
+                  <span className="text-white/75">Night: </span>
                   <StayLink href={lodge ? `/lodges/${lodge.slug}` : undefined} label={d.stay} />
                 </>
               ),

@@ -1,8 +1,8 @@
 "use client";
 
 import { useReducedMotion } from "@/lib/useReducedMotion";
-import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "@/components/ui/Image";
+import { m, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import type { Img } from "@/data/types";
 import { GridLines } from "@/components/ui/GridLines";
@@ -51,15 +51,15 @@ export function PageHero({
 
   return (
     <section ref={ref} className="relative h-[100svh] min-h-[560px] overflow-hidden bg-volcanic text-white">
-      <motion.div className="absolute inset-0" style={{ y: reduce ? 0 : y }}>
+      <m.div className="absolute inset-0" style={{ y: reduce ? 0 : y }}>
         <div className="absolute inset-0 animate-[slow-zoom_2.4s_cubic-bezier(.22,1,.36,1)_both]">
           <Image src={image.src} alt={image.alt} fill priority sizes="100vw" className="object-cover" />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-volcanic/40 via-volcanic/25 to-volcanic/40" />
-      </motion.div>
+      </m.div>
       <GridLines tone="light" />
 
-      <motion.div
+      <m.div
         className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center"
         style={{ y: reduce ? 0 : textY, opacity: textOpacity }}
       >
@@ -67,7 +67,7 @@ export function PageHero({
         <h1 className={`${titleCls} max-w-[16ch]`}>{title}</h1>
         {meta ? <div className="mt-6 flex items-center gap-3 text-[13px] font-semibold">{meta}</div> : null}
         {intro ? <div className="t-body mt-3 max-w-[25rem] text-white/90">{intro}</div> : null}
-      </motion.div>
+      </m.div>
 
       {coordinates ? (
         <p className="t-label absolute inset-x-0 bottom-[11vh] z-10 text-center tracking-[0.05em]">[ {coordinates} ]</p>
@@ -87,7 +87,7 @@ export function PageHero({
       ) : null}
 
       {mist ? (
-        <motion.div
+        <m.div
           aria-hidden
           className="pointer-events-none absolute inset-x-[-10%] bottom-0 z-20 h-[110%] bg-[length:100%_100%] bg-no-repeat"
           style={{ y: reduce ? 0 : mistY, opacity: mistOpacity, backgroundImage: "url(/mist/bank.webp)" }}

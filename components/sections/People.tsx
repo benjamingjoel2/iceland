@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/ui/Image";
 import type { Person, Testimonial } from "@/data/types";
 import { GridLines } from "@/components/ui/GridLines";
 import { PlaceholderFlag } from "@/components/ui/Flag";

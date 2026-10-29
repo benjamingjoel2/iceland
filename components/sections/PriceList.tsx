@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/ui/Image";
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { useState } from "react";
 import type { Journey, SeasonKey } from "@/data/types";
 import { Price } from "@/components/ui/Price";
@@ -52,16 +52,15 @@ export function PriceList({ journeys, lodgeNames }: { journeys: Journey[]; lodge
       <ul className="space-y-3">
         <AnimatePresence initial={false}>
           {shown.map((j) => (
-            <motion.li
+            <m.li
               key={j.slug}
-              layout
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.4 }}
             >
               <PriceCard j={j} lodgeNames={lodgeNames} />
-            </motion.li>
+            </m.li>
           ))}
         </AnimatePresence>
       </ul>
@@ -81,9 +80,9 @@ function PriceCard({ j, lodgeNames }: { j: Journey; lodgeNames: Record<string, s
     <article className="grid grid-cols-1 gap-5 rounded-[4px] bg-white p-3 md:grid-cols-[minmax(0,5fr)_minmax(0,8fr)] md:p-3">
       <div className="relative aspect-[4/3] overflow-hidden md:aspect-auto md:min-h-[300px]">
         <AnimatePresence mode="sync">
-          <motion.div key={img} className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.6 }}>
+          <m.div key={img} className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.6 }}>
             <Image src={gallery[img].src} alt={gallery[img].alt} fill sizes="(min-width: 768px) 38vw, 100vw" className="object-cover" />
-          </motion.div>
+          </m.div>
         </AnimatePresence>
         <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1">
           <button type="button" aria-label="Previous image" onClick={() => setImg((i) => (i - 1 + gallery.length) % gallery.length)} className="glass h-7 w-10 rounded-[2px] text-[13px] text-white hover:bg-aurora">←</button>
@@ -109,7 +108,7 @@ function PriceCard({ j, lodgeNames }: { j: Journey; lodgeNames: Record<string, s
 
         <AnimatePresence initial={false}>
           {datesOpen ? (
-            <motion.div
+            <m.div
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
@@ -120,7 +119,7 @@ function PriceCard({ j, lodgeNames }: { j: Journey; lodgeNames: Record<string, s
                 <p className="mt-1">{j.seasonNote}. Private departures on dates of your choosing within the season.</p>
                 <div className="mt-2"><VerifyFlag note={j.verify.join("; ")} /></div>
               </div>
-            </motion.div>
+            </m.div>
           ) : null}
         </AnimatePresence>
 
