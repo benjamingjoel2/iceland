@@ -3,13 +3,14 @@
 import { useReducedMotion } from "@/lib/useReducedMotion";
 import Image from "@/components/ui/Image";
 import { m, useScroll, useTransform } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { brand } from "@/config/site";
 import { film, images } from "@/data/images";
 import { CloudLayers } from "@/components/motion/CloudLayers";
 import { GridLines } from "@/components/ui/GridLines";
 import { WatchFilmButton } from "@/components/ui/FilmModal";
 import { useUI } from "@/components/layout/UIProvider";
+import { useAfterLoad } from "@/lib/useAfterLoad";
 
 /**
  * Homepage hero: muted looping film, tagline left, "Watch film" right and a giant
@@ -21,19 +22,12 @@ export function GiantHero({ word = "Iceland" }: { word?: string }) {
   const reduce = useReducedMotion();
   const { openFilm } = useUI();
   // Mount the background film only after the page has loaded, so it never competes
-  // with the poster, fonts and scripts on the critical path.
-  const [videoReady, setVideoReady] = useState(false);
-  useEffect(() => {
-    if (reduce) return;
-    let t: ReturnType<typeof setTimeout>;
-    const start = () => (t = setTimeout(() => setVideoReady(true), 400));
-    if (document.readyState === "complete") start();
-    else window.addEventListener("load", start, { once: true });
-    return () => {
-      window.removeEventListener("load", start);
-      clearTimeout(t);
-    };
-  }, [reduce]);
+  // with the poster, fonts and scripts on the critical path. Phones get the small
+  // encode only (one file, picked here rather than with <source media>, which some
+  // browsers ignore), and nobody on Save-Data or a 2G/3G connection gets the film at all:
+  // they keep the poster, which is the film's first frame.
+  const afterLoad = useAfterLoad();
+  const filmSrc = !reduce && afterLoad ? pickFilm() : null;
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
 
   const mediaScale = useTransform(scrollYProgress, [0, 1], [1, 1.12]);
@@ -47,7 +41,7 @@ export function GiantHero({ word = "Iceland" }: { word?: string }) {
       <div className="sticky top-0 h-[100svh] overflow-hidden bg-[#9aa3a8]">
         <m.div className="absolute inset-0" style={{ scale: reduce ? 1 : mediaScale }}>
           <Image src={film.posterImage} alt={images.auroraGreen.alt} fill priority sizes="100vw" className="object-cover" />
-          {videoReady ? (
+          {filmSrc ? (
             <video
               className="absolute inset-0 h-full w-full object-cover"
               autoPlay
@@ -55,12 +49,9 @@ export function GiantHero({ word = "Iceland" }: { word?: string }) {
               loop
               playsInline
               preload="metadata"
-              poster={film.poster}
               aria-hidden
-            >
-              <source src={film.srcSmall} type="video/mp4" media="(max-width: 767px)" />
-              <source src={film.src} type="video/mp4" />
-            </video>
+              src={filmSrc}
+            />
           ) : null}
           <div className="absolute inset-0 bg-gradient-to-b from-volcanic/30 via-transparent to-volcanic/25" />
         </m.div>
@@ -90,9 +81,16 @@ export function GiantHero({ word = "Iceland" }: { word?: string }) {
           </div>
         </div>
 
-        <CloudLayers progress={scrollYProgress} className="z-20" />
+        <CloudLayers progress={scrollYProgress} load={afterLoad} className="z-20" />
         <m.div aria-hidden className="absolute inset-0 z-30 bg-white" style={{ opacity: white }} />
       </div>
     </section>
   );
+}
+
+/** Small encode on phones; nothing on Save-Data or 2G/3G connections. Client-only (runs after load). */
+function pickFilm(): string | null {
+  const conn = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
+  if (conn?.saveData || /(^|-)(2g|3g)$/.test(conn?.effectiveType ?? "")) return null;
+  return window.matchMedia("(max-width: 767px)").matches ? film.srcSmall : film.src;
 }
