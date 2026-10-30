@@ -73,7 +73,7 @@ export function CardFlick({ items, tone = "light" }: { items: Journey[]; tone?: 
                   </h3>
                   <div className="max-w-[23rem]">
                     <p className="mb-3 flex items-center gap-3 text-[13px] font-semibold">
-                      <Price usd={j.priceFromUSD} prefix="" />
+                      <Price usd={j.priceFromUSD} />
                       <span className="h-3.5 w-px bg-white/60" />
                       <span>{j.seasonLabel}</span>
                     </p>
@@ -104,7 +104,7 @@ export function CardFlick({ items, tone = "light" }: { items: Journey[]; tone?: 
               </h3>
               <div>
                 <p className="mb-2 flex items-center gap-3 text-[13px] font-semibold">
-                  <Price usd={j.priceFromUSD} prefix="" />
+                  <Price usd={j.priceFromUSD} />
                   <span className="h-3.5 w-px bg-white/60" />
                   <span>{j.seasonLabel}</span>
                 </p>

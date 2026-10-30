@@ -72,7 +72,7 @@ export const faqs: Faq[] = [
     q: "What happens if the weather delays a helicopter flight?",
     a: [
       "Pilots fly only when it is safe. Your specialist builds flexible time into every itinerary that includes flights, so a delay usually means moving the flight to another day.",
-      "If a flight cannot go ahead at all, we offer an alternative or a refund for that element. [PLACEHOLDER — confirm policy]",
+      "If a flight cannot go ahead at all, we offer an alternative where one is possible. Our booking terms explain how changes are handled.",
     ],
   },
   {
@@ -114,14 +114,14 @@ export const faqs: Faq[] = [
     category: "Booking",
     q: "How do payments and deposits work?",
     a: [
-      "[PLACEHOLDER] A deposit secures your journey once you accept the proposal, with the balance due before travel. Prices are shown from, in US dollars, per person sharing; the currency switcher shows indicative conversions only.",
+      "A deposit secures your journey once you accept the proposal, with the balance due before travel; the amounts and dates are on your quote. Prices are shown as \"From\" prices, in US dollars, per person sharing; the currency switcher shows indicative conversions only.",
     ],
   },
   {
     category: "Booking",
     q: "What is your cancellation policy?",
     a: [
-      "[PLACEHOLDER] Cancellation terms depend on how close to departure you cancel. Full details are in our booking terms. We strongly recommend comprehensive travel insurance.",
+      "Cancellation charges depend on how close to departure you cancel and are set out in your quote. Full details are in our booking terms. We strongly recommend comprehensive travel insurance.",
     ],
   },
 ];

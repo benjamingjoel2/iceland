@@ -5,7 +5,6 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { steps } from "@/data/steps";
-import { contact } from "@/config/site";
 import { useUI } from "./UIProvider";
 
 /** Fixed side tab + right-hand drawer with the six steps, as on the reference. */
@@ -91,14 +90,6 @@ export function HowItWorks() {
                 </h3>
                 <p className="t-body text-atlantic/90">
                   {s.body}
-                  {s.n === 1 ? (
-                    <>
-                      {" "}
-                      <a href={contact.scheduleCallUrl} className="text-aurora underline underline-offset-2">
-                        Book a call directly.
-                      </a>
-                    </>
-                  ) : null}
                 </p>
               </li>
             ))}

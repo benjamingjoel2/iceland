@@ -1,12 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Inter_Tight, Oswald } from "next/font/google";
 import "./globals.css";
-import { brand } from "@/config/site";
+import { brand, contact } from "@/config/site";
 import { UIProvider } from "@/components/layout/UIProvider";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { HowItWorks } from "@/components/layout/HowItWorks";
-import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 
 // Variable fonts, Latin subset only (it covers Icelandic: þ ð æ ö á é í ó ú ý).
 const oswald = Oswald({ subsets: ["latin"], variable: "--font-oswald", display: "swap" });
@@ -46,6 +45,8 @@ const orgJsonLd = {
   description: brand.description,
   url: brand.url,
   areaServed: "Iceland",
+  email: contact.email,
+  address: { "@type": "PostalAddress", ...contact.address },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -57,7 +58,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <main id="main">{children}</main>
           <Footer />
           <HowItWorks />
-          <WhatsAppButton />
         </UIProvider>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }} />
       </body>

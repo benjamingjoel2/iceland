@@ -6,7 +6,7 @@
 
 export const brand = {
   name: "Edge of North",
-  legalName: "[COMPANY NAME]",
+  legalName: "Edge of North",
   tagline: "Where the map runs out.",
   eyebrow: "The Edge of the North",
   promise:
@@ -49,26 +49,17 @@ export const currencies: Record<
 export const defaultCurrency: CurrencyCode = "USD";
 
 export const contact = {
-  phone: "+354 000 0000", // [PLACEHOLDER]
-  phoneHref: "tel:+3540000000",
-  whatsappNumber: "[NUMBER]", // digits only, international format, e.g. 3545550000
-  emails: {
-    // Mailboxes on the brand subdomain — need MX records for edgeofnorth.tourground.com (see README).
-    guests: "travel@edgeofnorth.tourground.com",
-    trade: "trade@edgeofnorth.tourground.com",
-    press: "press@edgeofnorth.tourground.com",
+  /** One address for guests, trade and press. Needs MX records for tourground.com (see README). */
+  email: "edgeofnorth@tourground.com",
+  /** Business address: Gróska, the innovation and coworking centre in Reykjavík. */
+  office: "Gróska, Bjargargata 1, 102 Reykjavík, Iceland",
+  address: {
+    streetAddress: "Gróska, Bjargargata 1",
+    postalCode: "102",
+    addressLocality: "Reykjavík",
+    addressCountry: "IS",
   },
-  office: "[Registered office address], Reykjavík, Iceland",
-  license: "Icelandic Tourist Board travel licence no. [LICENSE NUMBER]",
-  scheduleCallUrl: "#schedule-a-call", // [PLACEHOLDER] booking link (e.g. calendar tool)
-  social: [
-    { label: "Instagram", href: "#" },
-    { label: "LinkedIn", href: "#" },
-    { label: "YouTube", href: "#" },
-  ],
 } as const;
-
-export const whatsappHref = `https://wa.me/${contact.whatsappNumber}`;
 
 /** Feature toggles. */
 export const features = {
@@ -100,8 +91,7 @@ export const secondaryNav = [
 ] as const;
 
 export const legalNav: NavLink[] = [
-  { label: "Website terms", href: "/legal/terms" },
-  { label: "Booking terms", href: "/legal/booking-terms" },
-  { label: "Privacy", href: "/legal/privacy" },
-  { label: "Cookies", href: "/legal/cookies" },
+  { label: "Privacy Policy", href: "/legal/privacy" },
+  { label: "Booking Terms", href: "/legal/booking-terms" },
+  { label: "Cookie Policy", href: "/legal/cookies" },
 ];

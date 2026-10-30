@@ -11,6 +11,14 @@ const nextConfig: NextConfig = {
     deviceSizes: [480, 828, 1200, 1920],
     imageSizes: [256],
   },
+  async redirects() {
+    return [
+      // The team page was removed; send old links to the story page.
+      { source: "/about/specialists", destination: "/about", permanent: true },
+      // Website terms were folded into the booking terms.
+      { source: "/legal/terms", destination: "/legal/booking-terms", permanent: true },
+    ];
+  },
   async headers() {
     const immutable = [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }];
     return [

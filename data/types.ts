@@ -8,8 +8,6 @@ export type SeasonKey = "summer" | "winter" | "all-year";
 export type Img = {
   src: string;
   alt: string;
-  /** Placeholder photography credit until commissioned imagery is in place. */
-  credit?: string;
 };
 
 export type Coordinates = { lat: number; lng: number };
@@ -55,7 +53,6 @@ export type Lodge = {
   gallery: Img[];
   highlights: Img[];
   activities: string[]; // experience slugs
-  quote: { text: string; author: string; placeholder: true };
 };
 
 export type ItineraryDay = {
@@ -91,7 +88,6 @@ export type Journey = {
   days: ItineraryDay[];
   included: string[];
   excluded: string[];
-  quote: { text: string; author: string; placeholder: true };
   verify: string[];
 };
 
@@ -111,25 +107,6 @@ export type Region = {
   gallery: Img[];
   wide: Img[];
   experiences: string[];
-};
-
-export type Person = {
-  slug: string;
-  name: string;
-  role: string;
-  placeholder: true;
-  bio: string[];
-  quote: string;
-  specialisms: string[];
-  languages: string[];
-  image: Img;
-};
-
-export type Testimonial = {
-  quote: string;
-  author: string;
-  journey: string;
-  placeholder: true;
 };
 
 export type FaqCategory =
