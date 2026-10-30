@@ -5,11 +5,6 @@ export const quotes = {
     author: "[Writer, Publication]",
     placeholder: true,
   },
-  closing: {
-    text: "[PLACEHOLDER] A closing line for the footer",
-    author: "[Attribution]",
-    placeholder: true,
-  },
   enquire: {
     text: "[PLACEHOLDER] A line about the stillness of the North, to be chosen and attributed.",
     author: "[Attribution]",

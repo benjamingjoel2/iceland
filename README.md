@@ -48,7 +48,7 @@ Everything that must be checked or replaced is visibly flagged on the site ("Ver
 
 - **Season windows, access dates and regulations** (highland F-roads, ice caves, puffins, aurora, daylight, entry rules incl. EES/ETIAS) — verify with partners and official sources. Flip `features.etiasLive` in `config/site.ts` when ETIAS launches.
 - **Flight times, distances, temperatures** in `data/gateway.ts`.
-- **Placeholder names**: the three lodges, specialists, all quotes (writer, closing, enquire, lodge press quotes).
+- **Placeholder names**: the three lodges, specialists, all quotes (writer, enquire, lodge press quotes).
 - **Contact details**: `[COMPANY NAME]`, registered office, Icelandic Tourist Board `[LICENSE NUMBER]`, schedule-a-call link.
 - **Prices** (base USD) and **FX rates** in `config/site.ts` (replace with a live feed or finance-set rates).
 - **Legal pages** — outlines only; need lawyer-drafted text.

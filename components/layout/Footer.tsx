@@ -3,10 +3,8 @@ import { brand, contact, legalNav } from "@/config/site";
 import { journeys } from "@/data/journeys";
 import { lodges } from "@/data/lodges";
 import { regions } from "@/data/regions";
-import { quotes } from "@/data/people";
 import { images } from "@/data/images";
 import { GridLines } from "@/components/ui/GridLines";
-import { PlaceholderFlag } from "@/components/ui/Flag";
 import { FooterFilmButton } from "./FooterFilmButton";
 import { NewsletterButton } from "./NewsletterButton";
 
@@ -113,13 +111,7 @@ export function Footer() {
         </svg>
 
         {/* Bottom bar */}
-        <div className="mt-6 grid grid-cols-1 items-center gap-6 border-t border-atlantic/10 py-6 md:grid-cols-2">
-          <figure className="md:text-left">
-            <blockquote className="t-eyebrow text-[17px]">“{quotes.closing.text}”</blockquote>
-            <figcaption className="mt-1 flex items-center gap-2 font-display text-[10px] uppercase tracking-[0.2em] text-slate">
-              — {quotes.closing.author} <PlaceholderFlag />
-            </figcaption>
-          </figure>
+        <div className="mt-6 border-t border-atlantic/10 py-6">
           <div className="md:text-right">
             <ul className="flex flex-wrap gap-x-4 gap-y-1 md:justify-end">
               {legalNav.map((l) => (
