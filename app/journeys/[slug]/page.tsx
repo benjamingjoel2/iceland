@@ -6,12 +6,11 @@ import { journeys, journeyBySlug } from "@/data/journeys";
 import { lodgeBySlug, formatCoordinates } from "@/data/lodges";
 import { regionBySlug } from "@/data/regions";
 import { experienceBySlug } from "@/data/experiences";
-import { testimonials } from "@/data/people";
 import { pageMetadata } from "@/lib/seo";
 import { PageHero } from "@/components/sections/PageHero";
 import { TabBar } from "@/components/sections/TabBar";
 import { DayByDay, StayLink } from "@/components/sections/DayByDay";
-import { FourUp, OffsetImageText, QuoteBand } from "@/components/sections/Blocks";
+import { FourUp, OffsetImageText } from "@/components/sections/Blocks";
 import { CtaBanner } from "@/components/sections/CtaBanner";
 import { SectionTitle } from "@/components/sections/SectionTitle";
 import { GridLines } from "@/components/ui/GridLines";
@@ -42,7 +41,6 @@ export default async function JourneyPage({ params }: PageProps<"/journeys/[slug
   const lodges = j.lodges.map(lodgeBySlug).filter((l) => !!l);
   const regions = j.regions.map(regionBySlug).filter((r) => !!r);
   const exps = j.experiences.map(experienceBySlug).filter((e) => !!e);
-  const testimonial = testimonials.find((t) => t.journey === j.title) ?? testimonials[0];
   const others = journeys.filter((o) => o.slug !== j.slug).slice(0, 4);
 
   const jsonLd = {
@@ -141,13 +139,6 @@ export default async function JourneyPage({ params }: PageProps<"/journeys/[slug
             ))}
           </ul>
         }
-      />
-
-      <QuoteBand
-        image={j.gallery[3]}
-        text={testimonial.quote}
-        author={testimonial.author}
-        flag={<PlaceholderFlag label="Placeholder testimonial" tone="dark" />}
       />
 
       <section className="relative bg-volcanic pt-[16vh] text-white">

@@ -7,7 +7,7 @@ import { m } from "framer-motion";
 export function Reveal({
   children,
   delay = 0,
-  y = 24,
+  y = 16,
   className = "",
   as = "div",
 }: {
@@ -25,7 +25,7 @@ export function Reveal({
       initial={reduce ? { opacity: 1 } : { opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.25 }}
-      transition={{ duration: 1.1, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.6, delay: delay * 0.5, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
     </Comp>

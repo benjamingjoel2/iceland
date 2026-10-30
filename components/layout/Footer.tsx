@@ -21,9 +21,6 @@ function Col({ title, children }: { title: string; children: React.ReactNode }) 
   );
 }
 
-/** Placeholder badges — replace with the real licence and award marks. */
-const badges = ["Tourist Board licence", "Quality label", "Award", "Award", "Award", "Award"];
-
 export function Footer() {
   return (
     <footer className="relative overflow-hidden bg-ice text-atlantic">
@@ -43,7 +40,6 @@ export function Footer() {
             <Col title="Guest enquiries">
               <ul>
                 <li><a className={linkCls} href={`mailto:${contact.emails.guests}`}>{contact.emails.guests}</a></li>
-                <li><a className={linkCls} href={contact.phoneHref}>{contact.phone}</a></li>
                 <li><a className={linkCls} href={contact.scheduleCallUrl}>Schedule a call</a></li>
               </ul>
             </Col>
@@ -90,16 +86,8 @@ export function Footer() {
             <Col title="About">
               <ul>
                 <li><Link className={linkCls} href="/about">Our story</Link></li>
-                <li><Link className={linkCls} href="/about/specialists">Specialists</Link></li>
                 <li><Link className={linkCls} href="/journal">Journal</Link></li>
                 <li><Link className={linkCls} href="/faq">FAQ</Link></li>
-              </ul>
-            </Col>
-            <Col title="Social">
-              <ul>
-                {contact.social.map((s) => (
-                  <li key={s.label}><a className={linkCls} href={s.href}>{s.label}</a></li>
-                ))}
               </ul>
             </Col>
           </div>
@@ -125,17 +113,10 @@ export function Footer() {
         </svg>
 
         {/* Bottom bar */}
-        <div className="mt-6 grid grid-cols-1 items-center gap-6 border-t border-atlantic/10 py-6 md:grid-cols-3">
-          <ul className="flex flex-wrap items-center gap-2" aria-label="Licences and awards (placeholders)">
-            {badges.map((b, i) => (
-              <li key={i} title={`${b} — placeholder`} className="flex h-10 w-10 items-center justify-center rounded-full border border-dashed border-atlantic/30 text-center text-[7px] font-semibold uppercase leading-tight text-atlantic">
-                {b}
-              </li>
-            ))}
-          </ul>
-          <figure className="text-center">
+        <div className="mt-6 grid grid-cols-1 items-center gap-6 border-t border-atlantic/10 py-6 md:grid-cols-2">
+          <figure className="md:text-left">
             <blockquote className="t-eyebrow text-[17px]">“{quotes.closing.text}”</blockquote>
-            <figcaption className="mt-1 flex items-center justify-center gap-2 font-display text-[10px] uppercase tracking-[0.2em] text-slate">
+            <figcaption className="mt-1 flex items-center gap-2 font-display text-[10px] uppercase tracking-[0.2em] text-slate">
               — {quotes.closing.author} <PlaceholderFlag />
             </figcaption>
           </figure>

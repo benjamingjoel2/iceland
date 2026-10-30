@@ -22,11 +22,16 @@ export function GiantHero({ word = "Iceland" }: { word?: string }) {
   const { openFilm } = useUI();
   // Mount the background film only after the page has loaded, so it never competes
   // with the poster, fonts and scripts on the critical path.
-  const [videoReady, setVideoReady] = useState(false);
+  const [videoSrc, setVideoSrc] = useState<string | null>(null);
   useEffect(() => {
     if (reduce) return;
+    // Skip the background film on data-saver or slow connections: the poster carries the hero.
+    const conn = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
+    if (conn?.saveData || (conn?.effectiveType && conn.effectiveType !== "4g")) return;
     let t: ReturnType<typeof setTimeout>;
-    const start = () => (t = setTimeout(() => setVideoReady(true), 400));
+    // One file only: the small encode on phones, the full one on larger screens.
+    const pick = () => (window.matchMedia("(max-width: 767px)").matches ? film.srcSmall : film.src);
+    const start = () => (t = setTimeout(() => setVideoSrc(pick()), 400));
     if (document.readyState === "complete") start();
     else window.addEventListener("load", start, { once: true });
     return () => {
@@ -47,20 +52,17 @@ export function GiantHero({ word = "Iceland" }: { word?: string }) {
       <div className="sticky top-0 h-[100svh] overflow-hidden bg-[#9aa3a8]">
         <m.div className="absolute inset-0" style={{ scale: reduce ? 1 : mediaScale }}>
           <Image src={film.posterImage} alt={images.auroraGreen.alt} fill priority sizes="100vw" className="object-cover" />
-          {videoReady ? (
+          {videoSrc ? (
             <video
               className="absolute inset-0 h-full w-full object-cover"
+              src={videoSrc}
               autoPlay
               muted
               loop
               playsInline
-              preload="metadata"
-              poster={film.poster}
+              preload="auto"
               aria-hidden
-            >
-              <source src={film.srcSmall} type="video/mp4" media="(max-width: 767px)" />
-              <source src={film.src} type="video/mp4" />
-            </video>
+            />
           ) : null}
           <div className="absolute inset-0 bg-gradient-to-b from-volcanic/30 via-transparent to-volcanic/25" />
         </m.div>

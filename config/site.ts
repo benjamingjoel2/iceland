@@ -49,9 +49,6 @@ export const currencies: Record<
 export const defaultCurrency: CurrencyCode = "USD";
 
 export const contact = {
-  phone: "+354 000 0000", // [PLACEHOLDER]
-  phoneHref: "tel:+3540000000",
-  whatsappNumber: "[NUMBER]", // digits only, international format, e.g. 3545550000
   emails: {
     // One brand address on tourground.com for guest, trade and press enquiries.
     guests: "edgeofnorth@tourground.com",
@@ -61,14 +58,8 @@ export const contact = {
   office: "[Registered office address], Reykjavík, Iceland",
   license: "Icelandic Tourist Board travel licence no. [LICENSE NUMBER]",
   scheduleCallUrl: "#schedule-a-call", // [PLACEHOLDER] booking link (e.g. calendar tool)
-  social: [
-    { label: "Instagram", href: "#" },
-    { label: "LinkedIn", href: "#" },
-    { label: "YouTube", href: "#" },
-  ],
 } as const;
 
-export const whatsappHref = `https://wa.me/${contact.whatsappNumber}`;
 
 /** Feature toggles. */
 export const features = {

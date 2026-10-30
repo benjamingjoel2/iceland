@@ -113,25 +113,6 @@ export type Region = {
   experiences: string[];
 };
 
-export type Person = {
-  slug: string;
-  name: string;
-  role: string;
-  placeholder: true;
-  bio: string[];
-  quote: string;
-  specialisms: string[];
-  languages: string[];
-  image: Img;
-};
-
-export type Testimonial = {
-  quote: string;
-  author: string;
-  journey: string;
-  placeholder: true;
-};
-
 export type FaqCategory =
   | "When to go"
   | "Getting here"

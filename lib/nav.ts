@@ -39,7 +39,6 @@ export const flyouts: Record<string, { home?: boolean; groups: NavGroup[] }> = {
     groups: [
       { label: "About", links: [
         { label: "Our story", href: "/about" },
-        { label: "Your specialists", href: "/about/specialists" },
         { label: "Journal", href: "/journal" },
         { label: "FAQ", href: "/faq" },
       ] },
@@ -49,7 +48,6 @@ export const flyouts: Record<string, { home?: boolean; groups: NavGroup[] }> = {
 
 export const aboutTabs = [
   { label: "Our story", href: "/about" },
-  { label: "Specialists", href: "/about/specialists" },
   { label: "Journal", href: "/journal" },
   { label: "FAQ", href: "/faq" },
 ];

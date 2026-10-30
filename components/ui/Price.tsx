@@ -2,13 +2,12 @@
 
 import { useCurrency } from "@/lib/currency";
 
-/** Displays a base-USD price in the visitor's chosen currency. */
-export function Price({ usd, prefix = "from" }: { usd: number; prefix?: string }) {
+/** Displays a base-USD price in the visitor's chosen currency, always as "from <amount>". */
+export function Price({ usd }: { usd: number }) {
   const { format } = useCurrency();
   return (
     <span suppressHydrationWarning>
-      {prefix ? `${prefix} ` : ""}
-      {format(usd)}
+      from {format(usd)}
     </span>
   );
 }

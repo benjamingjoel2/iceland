@@ -6,7 +6,6 @@ import { UIProvider } from "@/components/layout/UIProvider";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { HowItWorks } from "@/components/layout/HowItWorks";
-import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 
 // Variable fonts, Latin subset only (it covers Icelandic: þ ð æ ö á é í ó ú ý).
 const oswald = Oswald({ subsets: ["latin"], variable: "--font-oswald", display: "swap" });
@@ -57,7 +56,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <main id="main">{children}</main>
           <Footer />
           <HowItWorks />
-          <WhatsAppButton />
         </UIProvider>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }} />
       </body>

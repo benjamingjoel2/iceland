@@ -125,7 +125,7 @@ export function EnquiryForm({ journeys, initialJourney = "" }: { journeys: Journ
           <p className="t-eyebrow mb-4 text-white/80">Thank you{firstName ? `, ${firstName}` : ""}</p>
           <h2 className="t-h3">Your journey north has begun</h2>
           <p className="t-body mx-auto mt-6 max-w-[26rem] text-white/85">
-            Your specialist will be in touch within one working day, {contactMethod === "Email" ? "by email" : contactMethod === "WhatsApp" ? "on WhatsApp" : "by telephone"}, to talk through your ideas. There is
+            Your specialist will be in touch within one working day, {contactMethod === "Email" ? "by email" : "by telephone"}, to talk through your ideas. There is
             nothing more you need to do.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-2">
@@ -293,7 +293,7 @@ export function EnquiryForm({ journeys, initialJourney = "" }: { journeys: Journ
               </div>
             </div>
             <p className="mb-3 mt-7 text-[14px] font-medium text-white">Preferred contact method</p>
-            <div className="grid grid-cols-3 gap-2" role="radiogroup" aria-label="Preferred contact method">
+            <div className="grid grid-cols-2 gap-2" role="radiogroup" aria-label="Preferred contact method">
               {contactMethods.map((m) => (
                 <button key={m} type="button" role="radio" aria-checked={contactMethod === m} onClick={() => setContactMethod(m)} className={`${tile} ${contactMethod === m ? tileOn : tileOff}`}>
                   {m}
