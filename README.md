@@ -27,8 +27,7 @@ replacing a photo in `public/images/`, run `python3 scripts/make-responsive.py` 
 
 ### Email
 
-Addresses are `travel@`, `trade@` and `press@edgeofnorth.tourground.com` (`config/site.ts`). They only receive mail
-once the mail provider's MX (and SPF/DKIM) records for `edgeofnorth.tourground.com` are added in Vercel DNS.
+The brand address is `edgeofnorth@tourground.com`, used for guest, trade and press enquiries (`config/site.ts`).
 
 ## Where things live
 
@@ -50,7 +49,7 @@ Everything that must be checked or replaced is visibly flagged on the site ("Ver
 - **Season windows, access dates and regulations** (highland F-roads, ice caves, puffins, aurora, daylight, entry rules incl. EES/ETIAS) — verify with partners and official sources. Flip `features.etiasLive` in `config/site.ts` when ETIAS launches.
 - **Flight times, distances, temperatures** in `data/gateway.ts`.
 - **Placeholder names**: the three lodges, specialists, testimonials, all quotes (writer, closing, enquire, lodge press quotes).
-- **Contact details**: `[COMPANY NAME]`, registered office, phone, email MX records, WhatsApp `[NUMBER]`, Icelandic Tourist Board `[LICENSE NUMBER]`, schedule-a-call link, footer badges.
+- **Contact details**: `[COMPANY NAME]`, registered office, phone, WhatsApp `[NUMBER]`, Icelandic Tourist Board `[LICENSE NUMBER]`, schedule-a-call link, footer badges.
 - **Prices** (base USD) and **FX rates** in `config/site.ts` (replace with a live feed or finance-set rates).
 - **Legal pages** — outlines only; need lawyer-drafted text.
 - **Imagery and film** — some stand-ins are not of the exact place/activity; replace with commissioned photography and the brand film.

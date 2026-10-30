@@ -53,10 +53,10 @@ export const contact = {
   phoneHref: "tel:+3540000000",
   whatsappNumber: "[NUMBER]", // digits only, international format, e.g. 3545550000
   emails: {
-    // Mailboxes on the brand subdomain — need MX records for edgeofnorth.tourground.com (see README).
-    guests: "travel@edgeofnorth.tourground.com",
-    trade: "trade@edgeofnorth.tourground.com",
-    press: "press@edgeofnorth.tourground.com",
+    // One brand address on tourground.com for guest, trade and press enquiries.
+    guests: "edgeofnorth@tourground.com",
+    trade: "edgeofnorth@tourground.com",
+    press: "edgeofnorth@tourground.com",
   },
   office: "[Registered office address], Reykjavík, Iceland",
   license: "Icelandic Tourist Board travel licence no. [LICENSE NUMBER]",
