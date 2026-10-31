@@ -1,14 +1,12 @@
 import Image from "@/components/ui/Image";
 import { brand } from "@/config/site";
 import { images } from "@/data/images";
-import { specialistQuote } from "@/data/people";
 import { journeys } from "@/data/journeys";
 import { pageMetadata } from "@/lib/seo";
 import { aboutTabs } from "@/lib/nav";
 import { PageHero } from "@/components/sections/PageHero";
 import { TabBar } from "@/components/sections/TabBar";
 import { FourUp, Statement } from "@/components/sections/Blocks";
-import { SpecialistQuote } from "@/components/sections/SpecialistQuote";
 import { CtaBanner } from "@/components/sections/CtaBanner";
 import { GridLines } from "@/components/ui/GridLines";
 import { ParallaxImage } from "@/components/motion/ParallaxImage";
@@ -58,7 +56,6 @@ export default function AboutPage() {
       </section>
 
       <Statement align="left" text="Iceland is never the same twice. We plan around the light, the weather and the ice, so you are in the right place at the right moment." />
-      <SpecialistQuote {...specialistQuote} />
 
       <section className="relative flex h-[100svh] items-center justify-center overflow-hidden text-white">
         <Image src={images.aboveClouds.src} alt={images.aboveClouds.alt} fill sizes="100vw" className="object-cover" />
@@ -71,7 +68,7 @@ export default function AboutPage() {
       <FourUp
         title={<>More<br />about us</>}
         items={[
-          { image: images.waterfallFigure, label: "FAQ", href: "/faq" },
+          { image: images.auroraTall, label: "FAQ", href: "/faq" },
           { image: images.iceNight, label: "Journal", href: "/journal" },
           { image: images.glacierLagoon, label: "Our lodges", href: "/lodges" },
           { image: journeys[0].card, label: "Journeys", href: "/journeys" },

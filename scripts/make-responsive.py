@@ -1,4 +1,4 @@
-"""Pre-builds responsive WebP variants of public/images/*.jpg and tiny blur placeholders.
+"""Pre-builds responsive AVIF variants of public/images/*.jpg and tiny blur placeholders.
 
 Images are served as static files by the CDN (no runtime image optimisation), via the
 custom loader in lib/imageLoader.ts. Run after adding or replacing photography:
@@ -21,7 +21,7 @@ for f in sorted(os.listdir(SRC)):
     im = Image.open(os.path.join(SRC, f)).convert("RGB")
     for w in WIDTHS:
         h = round(im.height * w / im.width)
-        im.resize((w, h), Image.LANCZOS).save(os.path.join(OUT, f"{name}-{w}.webp"), "WEBP", quality=70, method=6)
+        im.resize((w, h), Image.LANCZOS).save(os.path.join(OUT, f"{name}-{w}.avif"), "AVIF", quality=45, speed=4)
     tiny = im.resize((12, max(1, round(im.height * 12 / im.width))), Image.LANCZOS)
     b = io.BytesIO(); tiny.save(b, "WEBP", quality=40)
     blur[f"/images/{f}"] = "data:image/webp;base64," + base64.b64encode(b.getvalue()).decode()

@@ -21,7 +21,7 @@ nameservers, so the subdomain is managed in Vercel, not GoDaddy). `NEXT_PUBLIC_S
 ### Images
 
 Photos are **not** run through Vercel's image optimiser (its quota is shared across every tourground site).
-`scripts/make-responsive.py` pre-builds WebP files at 480/828/1200/1920px plus blur placeholders
+`scripts/make-responsive.py` pre-builds AVIF files at 480/828/1200/1920px plus blur placeholders
 (`public/images/r/`, `data/blur.json`), and `lib/imageLoader.ts` points `next/image` at them. After adding or
 replacing a photo in `public/images/`, run `python3 scripts/make-responsive.py` and commit the output.
 
