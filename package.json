@@ -3,14 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "node scripts/i18n-build.mjs && next dev",
+    "build": "node scripts/i18n-build.mjs && next build",
     "start": "next start",
     "lint": "eslint",
     "cf-build": "opennextjs-cloudflare build",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
-    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
+    "i18n": "node scripts/i18n-build.mjs",
+    "i18n:extract": "node scripts/i18n-build.mjs extract",
+    "i18n:missing": "node scripts/i18n-build.mjs missing"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",

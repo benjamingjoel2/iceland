@@ -1,35 +1,63 @@
 import { z } from "zod";
 
-export const seasonsOptions = ["Summer", "Winter", "Not sure"] as const;
-export const contactMethods = ["Email", "Telephone"] as const;
-export const budgetOptions = [
-  "Under US$10,000 per person",
-  "US$10,000–20,000 per person",
-  "US$20,000–35,000 per person",
-  "Over US$35,000 per person",
-  "Prefer to discuss",
-] as const;
-export const heardOptions = [
-  "Recommendation",
-  "Search engine",
-  "Press or magazine",
-  "Instagram",
-  "Travel advisor",
-  "Other",
-] as const;
+/**
+ * Option values are stable ids (the same in every language, so the API accepts enquiries from
+ * any locale); the labels are copy and are translated with the rest of the site.
+ */
+export const seasonsOptions = ["summer", "winter", "not-sure"] as const;
+export const seasonLabels: Record<(typeof seasonsOptions)[number], string> = {
+  summer: "Summer",
+  winter: "Winter",
+  "not-sure": "Not sure",
+};
+export const contactMethods = ["email", "telephone"] as const;
+export const contactLabels: Record<(typeof contactMethods)[number], string> = {
+  email: "Email",
+  telephone: "Telephone",
+};
+export const budgetOptions = ["under-10000", "10000-20000", "20000-35000", "over-35000", "discuss"] as const;
+export const budgetLabels: Record<(typeof budgetOptions)[number], string> = {
+  "under-10000": "Under US$10,000 per person",
+  "10000-20000": "US$10,000–20,000 per person",
+  "20000-35000": "US$20,000–35,000 per person",
+  "over-35000": "Over US$35,000 per person",
+  discuss: "Prefer to discuss",
+};
+export const heardOptions = ["recommendation", "search-engine", "press", "instagram", "travel-advisor", "other"] as const;
+export const heardLabels: Record<(typeof heardOptions)[number], string> = {
+  recommendation: "Recommendation",
+  "search-engine": "Search engine",
+  press: "Press or magazine",
+  instagram: "Instagram",
+  "travel-advisor": "Travel advisor",
+  other: "Other",
+};
 export const interestOptions = [
-  "Northern lights",
-  "Ice caves",
-  "Glaciers",
-  "Helicopter flights",
-  "Highlands",
-  "Midnight sun",
-  "Wildlife & whales",
-  "Geothermal & wellness",
-  "Food & wine",
-  "Horse riding",
-  "Photography",
+  "northern-lights",
+  "ice-caves",
+  "glaciers",
+  "helicopter",
+  "highlands",
+  "midnight-sun",
+  "wildlife",
+  "geothermal",
+  "food-wine",
+  "horse-riding",
+  "photography",
 ] as const;
+export const interestLabels: Record<(typeof interestOptions)[number], string> = {
+  "northern-lights": "Northern lights",
+  "ice-caves": "Ice caves",
+  glaciers: "Glaciers",
+  helicopter: "Helicopter flights",
+  highlands: "Highlands",
+  "midnight-sun": "Midnight sun",
+  wildlife: "Wildlife & whales",
+  geothermal: "Geothermal & wellness",
+  "food-wine": "Food & wine",
+  "horse-riding": "Horse riding",
+  photography: "Photography",
+};
 
 export const dialCodes = [
   { code: "+1", label: "United States / Canada (+1)" },
@@ -69,7 +97,7 @@ export const enquirySchema = z.object({
   season: z.enum(seasonsOptions, { error: "Please choose a season" }),
   dates: z.string().trim().max(120).optional().default(""),
   travellers: z.coerce.number({ error: "How many travellers?" }).int().min(1, "At least one traveller").max(40),
-  journey: z.string().trim().max(120).optional().default(""),
+  journey: z.string().trim().max(120).optional().default(""), // journey slug, "bespoke" or ""
   interests: z.array(z.enum(interestOptions)).max(interestOptions.length).default([]),
   budget: z.enum(budgetOptions, { error: "Please choose a budget range" }),
   heard: z.enum(heardOptions).or(z.literal("")).default(""),
@@ -78,8 +106,8 @@ export const enquirySchema = z.object({
   // Honeypot — must stay empty.
   company: z.string().max(0).optional().default(""),
 }).superRefine((v, ctx) => {
-  if (v.contactMethod === "Telephone" && v.phone.trim() === "") {
-    ctx.addIssue({ code: "custom", path: ["phone"], message: `Please add a phone number so we can reach you by ${v.contactMethod}` });
+  if (v.contactMethod === "telephone" && v.phone.trim() === "") {
+    ctx.addIssue({ code: "custom", path: ["phone"], message: "Please add a phone number so we can call you" });
   }
 });
 
