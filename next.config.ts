@@ -2,6 +2,9 @@ import type { NextConfig } from "next";
 import createMDX from "@next/mdx";
 
 const nextConfig: NextConfig = {
+  // Several root layouts (app/(en) plus the generated app/fr, app/de, app/es), so unmatched URLs
+  // get app/global-not-found.tsx.
+  experimental: { globalNotFound: true },
   pageExtensions: ["ts", "tsx", "md", "mdx"],
   images: {
     // Responsive WebP files are pre-built (scripts/make-responsive.py) and served as static

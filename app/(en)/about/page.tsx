@@ -44,7 +44,10 @@ export default function AboutPage() {
                 The island sits at the very edge of the North. The Arctic Circle crosses its northernmost island and the land itself is still being made, by volcanoes, glaciers and the North Atlantic. The best of it is remote, seasonal and governed by weather, which is exactly why it rewards expert planning.
               </p>
               <p>
-                So every journey is designed and looked after by a single dedicated specialist, from the first call to the last night, with private guides, the finest lodges and the flexibility to follow the light. [PLACEHOLDER — founding story to be written]
+                So every journey is designed and looked after by a single dedicated specialist, from the first call to the last night, with private guides, the finest lodges and the flexibility to follow the light.
+              </p>
+              <p>
+                Every journey starts as a conversation about what you hope to see and feel, and is shaped around you from there: your dates, your pace and the season you choose.
               </p>
             </div>
           </Reveal>

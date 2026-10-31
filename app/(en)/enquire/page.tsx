@@ -1,11 +1,9 @@
 import Image from "@/components/ui/Image";
 import { journeys } from "@/data/journeys";
 import { images } from "@/data/images";
-import { quotes } from "@/data/people";
 import { pageMetadata } from "@/lib/seo";
 import { EnquiryForm } from "@/components/sections/EnquiryForm";
 import { GridLines } from "@/components/ui/GridLines";
-import { PlaceholderFlag } from "@/components/ui/Flag";
 
 export const metadata = pageMetadata({
   title: "Start planning",
@@ -17,7 +15,7 @@ export const metadata = pageMetadata({
 export default async function EnquirePage({ searchParams }: PageProps<"/enquire">) {
   // Prefill from ?journey=slug (links on journey and price pages).
   const { journey } = await searchParams;
-  const initial = journeys.find((j) => j.slug === journey)?.title ?? "";
+  const initial = journeys.find((j) => j.slug === journey)?.slug ?? "";
   return (
     <div className="relative min-h-screen bg-volcanic text-white">
       <div className="fixed inset-0">
@@ -33,14 +31,6 @@ export default async function EnquirePage({ searchParams }: PageProps<"/enquire"
           </p>
         </header>
         <EnquiryForm journeys={journeys.map((j) => ({ slug: j.slug, title: j.title }))} initialJourney={initial} />
-        <figure className="mx-auto mt-[16vh] max-w-[26rem] text-center">
-          <span aria-hidden className="t-eyebrow block text-[22px]">“</span>
-          <blockquote className="t-quote mt-2">{quotes.enquire.text}</blockquote>
-          <figcaption className="mt-4 font-display text-[11px] uppercase tracking-[0.25em] text-white/80">
-            {quotes.enquire.author}
-            <span className="mt-2 block"><PlaceholderFlag tone="dark" /></span>
-          </figcaption>
-        </figure>
       </div>
     </div>
   );
