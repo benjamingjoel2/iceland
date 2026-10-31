@@ -129,9 +129,6 @@ export function EnquiryForm({ journeys, initialJourney = "" }: { journeys: Journ
             nothing more you need to do.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-2">
-            <a href={contact.scheduleCallUrl} className="flex h-12 items-center rounded-[2px] bg-white px-6 text-[13px] font-medium text-atlantic hover:bg-aurora hover:text-white">
-              Schedule a call now
-            </a>
             <Link href="/journal" className="flex h-12 items-center rounded-[2px] border border-white/40 px-6 text-[13px] font-medium text-white hover:bg-white hover:text-atlantic">
               Read the journal
             </Link>
@@ -300,13 +297,6 @@ export function EnquiryForm({ journeys, initialJourney = "" }: { journeys: Journ
                 </button>
               ))}
             </div>
-            <p className="mt-4 text-[12px] text-white/75">
-              Prefer to talk now?{" "}
-              <a href={contact.scheduleCallUrl} className="underline underline-offset-2">
-                Schedule a call
-              </a>{" "}
-              with a specialist.
-            </p>
           </Fieldset>
 
           <div className="pt-10">
@@ -327,7 +317,7 @@ export function EnquiryForm({ journeys, initialJourney = "" }: { journeys: Journ
             </button>
             {status === "error" ? (
               <p role="alert" className="mt-3 text-center text-[13px] text-amber-200">
-                Something didn&rsquo;t go through. Please check the fields above, or email {contact.emails.guests}.
+                Something didn&rsquo;t go through. Please check the fields above, or email {contact.email}.
               </p>
             ) : null}
             {Object.keys(errors).length > 0 ? (

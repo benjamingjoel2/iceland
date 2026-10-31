@@ -1,13 +1,11 @@
 import type { Img } from "./types";
 
 /**
- * Placeholder photography (Unsplash License), downloaded by scripts/fetch-images.sh.
- * Several stand-ins are not of the exact place or activity described;
- * replace with commissioned Edge of North imagery before launch.
+ * Stand-in photography (Unsplash License: no attribution required), downloaded by
+ * scripts/fetch-images.sh. Several stand-ins are not of the exact place or activity
+ * described; replace with commissioned Edge of North imagery before launch.
  */
-const credit = "Placeholder · Unsplash";
-
-const img = (file: string, alt: string): Img => ({ src: `/images/${file}.jpg`, alt, credit });
+const img = (file: string, alt: string): Img => ({ src: `/images/${file}.jpg`, alt });
 
 export const images = {
   auroraGreen: img("aurora-green", "Green aurora ribbons over a dark tree line"),

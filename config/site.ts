@@ -6,7 +6,7 @@
 
 export const brand = {
   name: "Edge of North",
-  legalName: "[COMPANY NAME]",
+  legalName: "Edge of North",
   tagline: "Where the map runs out.",
   eyebrow: "The Edge of the North",
   promise:
@@ -49,17 +49,17 @@ export const currencies: Record<
 export const defaultCurrency: CurrencyCode = "USD";
 
 export const contact = {
-  emails: {
-    // One brand address on tourground.com for guest, trade and press enquiries.
-    guests: "edgeofnorth@tourground.com",
-    trade: "edgeofnorth@tourground.com",
-    press: "edgeofnorth@tourground.com",
+  /** One address for guests, trade and press. Needs MX records for tourground.com (see README). */
+  email: "edgeofnorth@tourground.com",
+  /** Business address: Gróska, the innovation and coworking centre in Reykjavík. */
+  office: "Gróska, Bjargargata 1, 102 Reykjavík, Iceland",
+  address: {
+    streetAddress: "Gróska, Bjargargata 1",
+    postalCode: "102",
+    addressLocality: "Reykjavík",
+    addressCountry: "IS",
   },
-  office: "[Registered office address], Reykjavík, Iceland",
-  license: "Icelandic Tourist Board travel licence no. [LICENSE NUMBER]",
-  scheduleCallUrl: "#schedule-a-call", // [PLACEHOLDER] booking link (e.g. calendar tool)
 } as const;
-
 
 /** Feature toggles. */
 export const features = {
@@ -91,8 +91,7 @@ export const secondaryNav = [
 ] as const;
 
 export const legalNav: NavLink[] = [
-  { label: "Website terms", href: "/legal/terms" },
-  { label: "Booking terms", href: "/legal/booking-terms" },
-  { label: "Privacy", href: "/legal/privacy" },
-  { label: "Cookies", href: "/legal/cookies" },
+  { label: "Privacy Policy", href: "/legal/privacy" },
+  { label: "Booking Terms", href: "/legal/booking-terms" },
+  { label: "Cookie Policy", href: "/legal/cookies" },
 ];

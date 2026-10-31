@@ -7,7 +7,7 @@ export const steps: Step[] = [
     n: 1,
     title: "Consultation",
     body:
-      "Send an enquiry or book a call at a time that suits you, with no obligation. Your specialist will listen: what draws you to Iceland, the season, the pace, who is travelling. Then we check availability with the lodges and guides.",
+      "Send an enquiry, with no obligation. Your specialist will listen: what draws you to Iceland, the season, the pace, who is travelling. Then we check availability with the lodges and guides.",
     image: i.calmReflection,
   },
   {

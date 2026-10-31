@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Inter_Tight, Oswald } from "next/font/google";
 import "./globals.css";
-import { brand } from "@/config/site";
+import { brand, contact } from "@/config/site";
 import { UIProvider } from "@/components/layout/UIProvider";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -45,6 +45,8 @@ const orgJsonLd = {
   description: brand.description,
   url: brand.url,
   areaServed: "Iceland",
+  email: contact.email,
+  address: { "@type": "PostalAddress", ...contact.address },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

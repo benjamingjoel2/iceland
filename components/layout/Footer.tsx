@@ -35,20 +35,19 @@ export function Footer() {
 
           {/* Contacts */}
           <div className="col-span-2 py-2.5 sm:col-span-1 md:col-span-2 md:col-start-2">
-            <Col title="Guest enquiries">
+            <Col title="Enquiries, trade and press">
               <ul>
-                <li><a className={linkCls} href={`mailto:${contact.emails.guests}`}>{contact.emails.guests}</a></li>
-                <li><a className={linkCls} href={contact.scheduleCallUrl}>Schedule a call</a></li>
+                <li><a className={linkCls} href={`mailto:${contact.email}`}>{contact.email}</a></li>
               </ul>
             </Col>
-            <Col title="Trade enquiries">
-              <ul><li><a className={linkCls} href={`mailto:${contact.emails.trade}`}>{contact.emails.trade}</a></li></ul>
-            </Col>
-            <Col title="Press">
-              <ul><li><a className={linkCls} href={`mailto:${contact.emails.press}`}>{contact.emails.press}</a></li></ul>
-            </Col>
-            <Col title="Registered office">
-              <p className="t-body text-slate">{brand.legalName}<br />{contact.office}</p>
+            <Col title="Office">
+              <address className="t-body not-italic text-slate">
+                {brand.legalName}
+                <br />
+                Gróska, Bjargargata 1
+                <br />
+                102 Reykjavík, Iceland
+              </address>
             </Col>
           </div>
 
@@ -118,8 +117,6 @@ export function Footer() {
                 <li key={l.href}><Link href={l.href} className="t-small text-slate hover:text-atlantic">{l.label}</Link></li>
               ))}
             </ul>
-            <p className="t-small mt-2 text-slate">{contact.license}</p>
-            <p className="t-small mt-1 text-slate">© {new Date().getFullYear()} {brand.legalName}. All rights reserved.</p>
           </div>
         </div>
       </div>

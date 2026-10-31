@@ -4,7 +4,6 @@ import type { Metadata } from "next";
 import { legalDocs, legalBySlug } from "@/data/legal";
 import { pageMetadata } from "@/lib/seo";
 import { GridLines } from "@/components/ui/GridLines";
-import { PlaceholderFlag } from "@/components/ui/Flag";
 
 export const dynamicParams = false;
 
@@ -42,9 +41,6 @@ export default async function LegalPage({ params }: PageProps<"/legal/[doc]">) {
           <article className="prose-north col-span-4 md:col-span-6 md:col-start-5">
             <h1 className="t-h1">{d.title}</h1>
             <p className="t-small text-slate">Last updated {d.updated}</p>
-            <p>
-              <PlaceholderFlag label="Placeholder — to be drafted by a lawyer before launch" />
-            </p>
             {d.sections.map((s) => (
               <section key={s.h}>
                 <h2>{s.h}</h2>

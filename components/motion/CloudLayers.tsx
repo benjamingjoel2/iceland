@@ -8,7 +8,16 @@ import { m, useTransform, type MotionValue } from "framer-motion";
  * `progress` (0→1) drives how far the clouds rise and thicken; each layer also
  * drifts slowly sideways on its own.
  */
-export function CloudLayers({ progress, className = "" }: { progress: MotionValue<number>; className?: string }) {
+export function CloudLayers({
+  progress,
+  className = "",
+  load = true,
+}: {
+  progress: MotionValue<number>;
+  className?: string;
+  /** False keeps the textures unrequested (they start fully transparent anyway). */
+  load?: boolean;
+}) {
   const reduce = useReducedMotion();
   const y1 = useTransform(progress, [0, 1], ["35%", "-25%"]);
   const y2 = useTransform(progress, [0, 1], ["55%", "-10%"]);
@@ -27,7 +36,7 @@ export function CloudLayers({ progress, className = "" }: { progress: MotionValu
         <m.div key={i} className="absolute inset-x-[-12%] bottom-0" style={{ y: reduce ? 0 : l.y, opacity: l.o, height: l.h }}>
           <div
             className="h-full w-full bg-[length:100%_100%] bg-no-repeat"
-            style={{ backgroundImage: `url(${l.src})`, animation: reduce ? "none" : l.anim }}
+            style={{ backgroundImage: load ? `url(${l.src})` : undefined, animation: reduce ? "none" : l.anim }}
           />
         </m.div>
       ))}
