@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { film } from "@/data/images";
 
@@ -25,7 +25,7 @@ export function FilmModal({ open, onClose }: { open: boolean; onClose: () => voi
   return (
     <AnimatePresence>
       {open ? (
-        <motion.div
+        <m.div
           role="dialog"
           aria-modal="true"
           aria-label={film.title}
@@ -43,7 +43,7 @@ export function FilmModal({ open, onClose }: { open: boolean; onClose: () => voi
           >
             Close ×
           </button>
-          <motion.div
+          <m.div
             className="relative aspect-video w-full max-w-6xl"
             initial={{ scale: 0.96, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -55,8 +55,8 @@ export function FilmModal({ open, onClose }: { open: boolean; onClose: () => voi
               <track kind="captions" src={film.captions} srcLang="en" label="English" default />
             </video>
             <p className="t-small mt-3 text-white/60">Placeholder film assembled from stills — replace with the commissioned brand film.</p>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       ) : null}
     </AnimatePresence>
   );

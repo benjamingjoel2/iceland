@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { useId, useRef, useState } from "react";
 import Link from "next/link";
 import { contact } from "@/config/site";
@@ -114,7 +114,7 @@ export function EnquiryForm({ journeys, initialJourney = "" }: { journeys: Journ
   return (
     <AnimatePresence mode="wait">
       {status === "done" ? (
-        <motion.div
+        <m.div
           key="done"
           role="status"
           className="mx-auto max-w-[34rem] py-10 text-center text-white"
@@ -125,20 +125,17 @@ export function EnquiryForm({ journeys, initialJourney = "" }: { journeys: Journ
           <p className="t-eyebrow mb-4 text-white/80">Thank you{firstName ? `, ${firstName}` : ""}</p>
           <h2 className="t-h3">Your journey north has begun</h2>
           <p className="t-body mx-auto mt-6 max-w-[26rem] text-white/85">
-            Your specialist will be in touch within one working day, {contactMethod === "Email" ? "by email" : contactMethod === "WhatsApp" ? "on WhatsApp" : "by telephone"}, to talk through your ideas. There is
+            Your specialist will be in touch within one working day, {contactMethod === "Email" ? "by email" : "by telephone"}, to talk through your ideas. There is
             nothing more you need to do.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-2">
-            <a href={contact.scheduleCallUrl} className="flex h-12 items-center rounded-[2px] bg-white px-6 text-[13px] font-medium text-atlantic hover:bg-aurora hover:text-white">
-              Schedule a call now
-            </a>
             <Link href="/journal" className="flex h-12 items-center rounded-[2px] border border-white/40 px-6 text-[13px] font-medium text-white hover:bg-white hover:text-atlantic">
               Read the journal
             </Link>
           </div>
-        </motion.div>
+        </m.div>
       ) : (
-        <motion.form
+        <m.form
           key="form"
           ref={formRef}
           noValidate
@@ -293,20 +290,13 @@ export function EnquiryForm({ journeys, initialJourney = "" }: { journeys: Journ
               </div>
             </div>
             <p className="mb-3 mt-7 text-[14px] font-medium text-white">Preferred contact method</p>
-            <div className="grid grid-cols-3 gap-2" role="radiogroup" aria-label="Preferred contact method">
+            <div className="grid grid-cols-2 gap-2" role="radiogroup" aria-label="Preferred contact method">
               {contactMethods.map((m) => (
                 <button key={m} type="button" role="radio" aria-checked={contactMethod === m} onClick={() => setContactMethod(m)} className={`${tile} ${contactMethod === m ? tileOn : tileOff}`}>
                   {m}
                 </button>
               ))}
             </div>
-            <p className="mt-4 text-[12px] text-white/75">
-              Prefer to talk now?{" "}
-              <a href={contact.scheduleCallUrl} className="underline underline-offset-2">
-                Schedule a call
-              </a>{" "}
-              with a specialist.
-            </p>
           </Fieldset>
 
           <div className="pt-10">
@@ -327,7 +317,7 @@ export function EnquiryForm({ journeys, initialJourney = "" }: { journeys: Journ
             </button>
             {status === "error" ? (
               <p role="alert" className="mt-3 text-center text-[13px] text-amber-200">
-                Something didn&rsquo;t go through. Please check the fields above, or email {contact.emails.guests}.
+                Something didn&rsquo;t go through. Please check the fields above, or email {contact.email}.
               </p>
             ) : null}
             {Object.keys(errors).length > 0 ? (
@@ -337,7 +327,7 @@ export function EnquiryForm({ journeys, initialJourney = "" }: { journeys: Journ
               We use your details only to plan your journey. See our <Link href="/legal/privacy" className="underline">privacy notice</Link>.
             </p>
           </div>
-        </motion.form>
+        </m.form>
       )}
     </AnimatePresence>
   );

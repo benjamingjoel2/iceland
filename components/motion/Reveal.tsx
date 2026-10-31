@@ -1,13 +1,13 @@
 "use client";
 
 import { useReducedMotion } from "@/lib/useReducedMotion";
-import { motion} from "framer-motion";
+import { m } from "framer-motion";
 
 /** Calm fade-and-rise used throughout, matching the reference's slow text reveals. */
 export function Reveal({
   children,
   delay = 0,
-  y = 24,
+  y = 16,
   className = "",
   as = "div",
 }: {
@@ -18,14 +18,14 @@ export function Reveal({
   as?: "div" | "span" | "li" | "p";
 }) {
   const reduce = useReducedMotion();
-  const Comp = motion[as];
+  const Comp = m[as];
   return (
     <Comp
       className={className}
       initial={reduce ? { opacity: 1 } : { opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.25 }}
-      transition={{ duration: 1.1, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.6, delay: delay * 0.5, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
     </Comp>

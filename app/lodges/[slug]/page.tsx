@@ -7,7 +7,7 @@ import { regionBySlug } from "@/data/regions";
 import { experienceBySlug } from "@/data/experiences";
 import { pageMetadata } from "@/lib/seo";
 import { PageHero } from "@/components/sections/PageHero";
-import { ListCard, OffsetImageText, QuoteBand, WideImage } from "@/components/sections/Blocks";
+import { ListCard, OffsetImageText, WideImage } from "@/components/sections/Blocks";
 import { ImageFlick } from "@/components/sections/ImageFlick";
 import { CardFlick } from "@/components/sections/CardFlick";
 import { SectionTitle } from "@/components/sections/SectionTitle";
@@ -78,8 +78,6 @@ export default async function LodgePage({ params }: PageProps<"/lodges/[slug]">)
       />
 
       <ListCard title={l.amenitiesTitle} items={l.amenities} />
-
-      <QuoteBand text={l.quote.text} author={l.quote.author} flag={<PlaceholderFlag />} />
 
       <section className="relative bg-white pb-[14vh] text-atlantic">
         <GridLines />

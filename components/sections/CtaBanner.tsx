@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/ui/Image";
 import Link from "next/link";
 import type { Img } from "@/data/types";
 import { GridLines } from "@/components/ui/GridLines";

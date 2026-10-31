@@ -1,8 +1,8 @@
 "use client";
 
 import { useReducedMotion } from "@/lib/useReducedMotion";
-import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "@/components/ui/Image";
+import { m, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import type { Img } from "@/data/types";
 import { CloudLayers } from "@/components/motion/CloudLayers";
@@ -35,13 +35,13 @@ export function QuoteAndRoute({
   return (
     <section ref={ref} className="relative h-[300vh] bg-white">
       <div className="sticky top-0 h-[100svh] overflow-hidden">
-        <motion.div className="absolute inset-0" style={{ scale: reduce ? 1 : scale }}>
+        <m.div className="absolute inset-0" style={{ scale: reduce ? 1 : scale }}>
           <Image src={image.src} alt={image.alt} fill sizes="100vw" className="object-cover" />
           <div className="absolute inset-0 bg-atlantic/35" />
-        </motion.div>
+        </m.div>
         <GridLines tone="light" />
 
-        <motion.figure className="absolute inset-0 z-10 flex items-center justify-center px-6 text-center text-white" style={{ opacity: quoteOpacity }}>
+        <m.figure className="absolute inset-0 z-10 flex items-center justify-center px-6 text-center text-white" style={{ opacity: quoteOpacity }}>
           <div className="max-w-[34rem]">
             <span aria-hidden className="t-eyebrow block text-[22px]">“</span>
             <blockquote className="t-quote mt-3 text-[clamp(1.4rem,1.9vw,1.75rem)]">{quote.text}</blockquote>
@@ -55,9 +55,9 @@ export function QuoteAndRoute({
               ) : null}
             </figcaption>
           </div>
-        </motion.figure>
+        </m.figure>
 
-        <motion.h2
+        <m.h2
           className="t-route absolute inset-x-0 top-[30%] z-10 whitespace-nowrap text-center text-white"
           style={{ opacity: codeOpacity, y: reduce ? 0 : codeY }}
           aria-label={`${route.from} to ${route.to}`}
@@ -65,10 +65,10 @@ export function QuoteAndRoute({
           <span className="block text-[0.42em] md:inline md:text-[0.5em]">{route.from}</span>
           <span className="md:mx-[0.12em]"> – </span>
           {route.to}
-        </motion.h2>
+        </m.h2>
 
         <CloudLayers progress={clouds} className="z-20" />
-        <motion.div aria-hidden className="absolute inset-0 z-30 bg-white" style={{ opacity: white }} />
+        <m.div aria-hidden className="absolute inset-0 z-30 bg-white" style={{ opacity: white }} />
       </div>
     </section>
   );

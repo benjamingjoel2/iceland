@@ -1,9 +1,9 @@
 "use client";
 
 import { useReducedMotion } from "@/lib/useReducedMotion";
-import Image from "next/image";
+import Image from "@/components/ui/Image";
 import Link from "next/link";
-import { motion} from "framer-motion";
+import { m } from "framer-motion";
 import { useEffect, useState } from "react";
 import type { Journey } from "@/data/types";
 import { seasonLabel } from "@/data/seasons";
@@ -36,12 +36,10 @@ export function CardFlick({ items, tone = "light" }: { items: Journey[]; tone?: 
         {items.map((j, i) => {
           const open = i === active;
           return (
-            <motion.div
+            <div
               key={j.slug}
-              layout
               className="relative h-full min-w-0 overflow-hidden"
-              style={{ flexGrow: open ? 7 : 1, flexBasis: 0 }}
-              transition={{ duration: 0.9, ease: [0.65, 0, 0.35, 1] }}
+              style={{ flexGrow: open ? 7 : 1, flexBasis: 0, transition: "flex-grow 900ms cubic-bezier(.65,0,.35,1)" }}
               onMouseEnter={() => setActive(i)}
             >
               <Link
@@ -58,7 +56,7 @@ export function CardFlick({ items, tone = "light" }: { items: Journey[]; tone?: 
                   className={`object-cover transition-[filter,transform] duration-[1200ms] ${open ? "scale-100 blur-0" : "scale-110 blur-[10px]"}`}
                 />
                 <div className={`absolute inset-0 bg-gradient-to-t from-volcanic/55 via-volcanic/5 to-volcanic/25 transition-opacity duration-700 ${open ? "opacity-100" : "opacity-40"}`} />
-                <motion.div
+                <m.div
                   className="absolute inset-0 flex flex-col justify-between p-8 lg:p-10"
                   animate={{ opacity: open ? 1 : 0 }}
                   transition={{ duration: open ? 0.8 : 0.25, delay: open ? 0.35 : 0 }}
@@ -75,15 +73,15 @@ export function CardFlick({ items, tone = "light" }: { items: Journey[]; tone?: 
                   </h3>
                   <div className="max-w-[23rem]">
                     <p className="mb-3 flex items-center gap-3 text-[13px] font-semibold">
-                      <Price usd={j.priceFromUSD} prefix="" />
+                      <Price usd={j.priceFromUSD} />
                       <span className="h-3.5 w-px bg-white/60" />
                       <span>{j.seasonLabel}</span>
                     </p>
                     <p className="text-[14px] font-medium leading-[1.45] text-white/90">{j.excerpt}</p>
                   </div>
-                </motion.div>
+                </m.div>
               </Link>
-            </motion.div>
+            </div>
           );
         })}
       </div>
@@ -106,7 +104,7 @@ export function CardFlick({ items, tone = "light" }: { items: Journey[]; tone?: 
               </h3>
               <div>
                 <p className="mb-2 flex items-center gap-3 text-[13px] font-semibold">
-                  <Price usd={j.priceFromUSD} prefix="" />
+                  <Price usd={j.priceFromUSD} />
                   <span className="h-3.5 w-px bg-white/60" />
                   <span>{j.seasonLabel}</span>
                 </p>

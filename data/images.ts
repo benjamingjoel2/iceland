@@ -1,13 +1,11 @@
 import type { Img } from "./types";
 
 /**
- * Placeholder photography (Unsplash License), downloaded by scripts/fetch-images.sh.
- * Several stand-ins are not of the exact place or activity described;
- * replace with commissioned Edge of North imagery before launch.
+ * Stand-in photography (Unsplash License: no attribution required), downloaded by
+ * scripts/fetch-images.sh. Several stand-ins are not of the exact place or activity
+ * described; replace with commissioned Edge of North imagery before launch.
  */
-const credit = "Placeholder · Unsplash";
-
-const img = (file: string, alt: string): Img => ({ src: `/images/${file}.jpg`, alt, credit });
+const img = (file: string, alt: string): Img => ({ src: `/images/${file}.jpg`, alt });
 
 export const images = {
   auroraGreen: img("aurora-green", "Green aurora ribbons over a dark tree line"),
@@ -46,9 +44,6 @@ export const images = {
   roomDark: img("room-dark", "A suite in dark tones with warm lighting"),
   dinner: img("dinner", "A plated dinner and wine glasses on a candlelit table"),
   diningRoom: img("dining-room", "An intimate dining room in warm light"),
-  portrait1: img("portrait-1", "Portrait of a specialist (placeholder)"),
-  portrait2: img("portrait-2", "Portrait of a specialist (placeholder)"),
-  portrait3: img("portrait-3", "Portrait of a specialist (placeholder)"),
   calmReflection: img("calm-reflection", "Mountains reflected in a perfectly calm lake at dusk"),
   coastTwilight: img("coast-twilight", "A rocky coast under a violet twilight sky"),
   snowTrees: img("snow-trees", "Snow-laden trees in a winter valley"),
@@ -59,6 +54,8 @@ export const film = {
   src: "/film/edge-of-north.mp4",
   srcSmall: "/film/edge-of-north-sm.mp4",
   poster: "/film/poster.jpg",
+  /** Same frame, served through the responsive image pipeline for <Image>. */
+  posterImage: "/images/film-poster.jpg",
   captions: "/film/edge-of-north.en.vtt",
   title: "Edge of North — a film in six places (placeholder)",
 };

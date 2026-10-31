@@ -35,7 +35,7 @@ def save(alpha, name, tint=(255, 255, 255)):
     for i, c in enumerate(tint):
         rgba[..., i] = np.clip(c * shade - (2 - i) * alpha * 4, 0, 255)
     rgba[..., 3] = np.clip(alpha * 255, 0, 255)
-    Image.fromarray(rgba, "RGBA").save(os.path.join(OUT, name), "WEBP", quality=82, method=6)
+    Image.fromarray(rgba, "RGBA").save(os.path.join(OUT, name), "WEBP", quality=50, method=6)
     print("wrote", name, w, h)
 
 
@@ -44,7 +44,7 @@ def smoothstep(e0, e1, x):
     return t * t * (3 - 2 * t)
 
 
-W, H = 2400, 1000
+W, H = 960, 400
 y = np.linspace(0, 1, H)[:, None]
 
 # Three drifting cloud layers: billowing, translucent cloud banks.
@@ -65,7 +65,3 @@ n = fractal(W, H, 51)
 edge = y + (n - 0.5) * 0.45
 a = smoothstep(0.25, 0.75, edge)
 save(a.astype(np.float32), "bank.webp")
-
-# Haze: very soft full-frame fog for overlays on imagery.
-n = fractal(1600, 1000, 77, octaves=4)
-save((smoothstep(0.2, 0.9, n) * 0.85).astype(np.float32), "haze.webp")

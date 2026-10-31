@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { m, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 /**
@@ -23,11 +23,11 @@ export function MistTransition({
   const opacity = useTransform(scrollYProgress, [0, 0.4], [0.4, 1]);
   return (
     <div ref={ref} aria-hidden className={`pointer-events-none relative z-20 ${className}`} style={{ height, marginTop: `calc(-1 * ${height})` }}>
-      <motion.div
+      <m.div
         className="absolute inset-x-[-10%] bottom-0 h-[130%] bg-[length:100%_100%] bg-no-repeat"
         style={{ y, opacity, backgroundImage: "url(/mist/bank.webp)" }}
       />
-      <motion.div
+      <m.div
         className="absolute inset-x-[-10%] bottom-0 h-full bg-[length:100%_100%] bg-no-repeat"
         style={{ y: y2, backgroundImage: "url(/mist/cloud-2.webp)", animation: "drift 50s ease-in-out infinite alternate" }}
       />

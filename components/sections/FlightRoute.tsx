@@ -1,8 +1,8 @@
 "use client";
 
 import { useReducedMotion } from "@/lib/useReducedMotion";
-import Image from "next/image";
-import { motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
+import Image from "@/components/ui/Image";
+import { m, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
 import { gateway } from "@/data/gateway";
 import { images } from "@/data/images";
@@ -135,8 +135,8 @@ export function FlightRoute() {
             <path d={ROUTE_JFK} stroke="#3fd8a0" strokeOpacity="0.18" strokeWidth="1" strokeDasharray="3 5" fill="none" />
             <path d={ROUTE_LHR} stroke="#3fd8a0" strokeOpacity="0.18" strokeWidth="1" strokeDasharray="3 5" fill="none" />
             {/* drawn routes */}
-            <motion.path ref={jfkRef} d={ROUTE_JFK} stroke="#3fd8a0" strokeWidth="1.4" fill="none" style={{ pathLength }} />
-            <motion.path ref={lhrRef} d={ROUTE_LHR} stroke="#3fd8a0" strokeWidth="1.4" fill="none" style={{ pathLength }} />
+            <m.path ref={jfkRef} d={ROUTE_JFK} stroke="#3fd8a0" strokeWidth="1.4" fill="none" style={{ pathLength }} />
+            <m.path ref={lhrRef} d={ROUTE_LHR} stroke="#3fd8a0" strokeWidth="1.4" fill="none" style={{ pathLength }} />
 
             {/* airports */}
             {[JFK, LHR].map((p, i) => (

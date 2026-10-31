@@ -3,14 +3,13 @@ import { brand } from "@/config/site";
 import { journeys } from "@/data/journeys";
 import { lodges } from "@/data/lodges";
 import { images } from "@/data/images";
-import { specialistQuote, quotes } from "@/data/people";
+import { quotes } from "@/data/people";
 import { gateway } from "@/data/gateway";
 import { GiantHero } from "@/components/sections/GiantHero";
 import { IntroStatement } from "@/components/sections/IntroStatement";
 import { SeasonsBlock } from "@/components/sections/SeasonsBlock";
 import { SectionTitle } from "@/components/sections/SectionTitle";
 import { CardFlick } from "@/components/sections/CardFlick";
-import { SpecialistQuote } from "@/components/sections/SpecialistQuote";
 import { LodgesHorizontal } from "@/components/sections/LodgesHorizontal";
 import { QuoteAndRoute } from "@/components/sections/QuoteAndRoute";
 import { FlightRoute } from "@/components/sections/FlightRoute";
@@ -44,8 +43,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <SpecialistQuote {...specialistQuote} />
 
       <LodgesHorizontal
         lodges={lodges}

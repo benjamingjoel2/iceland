@@ -1,9 +1,9 @@
 "use client";
 
 import { useReducedMotion } from "@/lib/useReducedMotion";
-import Image from "next/image";
+import Image from "@/components/ui/Image";
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { m, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import type { Img, Lodge } from "@/data/types";
 import { formatCoordinates } from "@/data/lodges";
@@ -45,19 +45,19 @@ export function LodgesHorizontal({
     <section aria-labelledby="our-lodges" className="relative bg-white text-white">
       <div ref={introRef} className="relative h-[170vh]">
         <div className="sticky top-0 h-[100svh] overflow-hidden">
-          <motion.div className="absolute inset-0" style={{ clipPath: reduce ? undefined : clip }}>
+          <m.div className="absolute inset-0" style={{ clipPath: reduce ? undefined : clip }}>
             <Image src={heroImage.src} alt={heroImage.alt} fill sizes="100vw" className="object-cover" />
             <div className="absolute inset-0 bg-volcanic/20" />
-          </motion.div>
+          </m.div>
           <GridLines tone="light" />
           <div className="relative z-10 grid h-full grid-cols-4 content-center gap-5 px-5 md:grid-cols-12">
             <h2 id="our-lodges" className="t-display col-span-4 text-center md:col-span-6 md:col-start-4">
               Our Lodges
             </h2>
-            <motion.div className="col-span-4 md:col-span-3 md:col-start-9 md:-mt-[2em]" style={{ opacity: reduce ? 1 : textOpacity }}>
+            <m.div className="col-span-4 md:col-span-3 md:col-start-9 md:-mt-[2em]" style={{ opacity: reduce ? 1 : textOpacity }}>
               <h3 className="t-label mb-2">{intro.label}</h3>
               <p className="t-body max-w-[19rem]">{intro.body}</p>
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </div>
@@ -65,17 +65,17 @@ export function LodgesHorizontal({
       {/* Desktop pinned track */}
       <div ref={trackRef} className="relative hidden md:block" style={{ height: `${lodges.length * 85 + 60}vh` }}>
         <div className="sticky top-0 h-[100svh] overflow-hidden">
-          <motion.div className="absolute inset-y-0 left-0 w-[115%]" style={{ x: reduce ? 0 : bgX }}>
+          <m.div className="absolute inset-y-0 left-0 w-[115%]" style={{ x: reduce ? 0 : bgX }}>
             <Image src={texture.src} alt="" fill sizes="115vw" className="object-cover" />
             <div className="absolute inset-0 bg-atlantic/25" />
-          </motion.div>
-          <motion.ul className="relative z-10 flex h-full items-center gap-[8vw] pl-[30vw]" style={{ x: reduce ? 0 : x }}>
+          </m.div>
+          <m.ul className="relative z-10 flex h-full items-center gap-[8vw] pl-[30vw]" style={{ x: reduce ? 0 : x }}>
             {lodges.map((l) => (
               <li key={l.slug} className="shrink-0">
                 <LodgePanel lodge={l} />
               </li>
             ))}
-          </motion.ul>
+          </m.ul>
         </div>
       </div>
 

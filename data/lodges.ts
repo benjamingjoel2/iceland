@@ -36,11 +36,6 @@ export const lodges: Lodge[] = [
     gallery: [i.roomTimber, i.diningRoom, i.glacierLagoon, i.auroraIce],
     highlights: [i.iceNight, i.dinner, i.snowRange, i.auroraIce],
     activities: ["ice-caves", "glacier-hiking", "helicopter-flights", "aurora-hunting"],
-    quote: {
-      text: "[PLACEHOLDER — press or guest quote about the lodge, to be sourced and attributed]",
-      author: "[Attribution]",
-      placeholder: true,
-    },
   },
   {
     slug: "the-lava-house",
@@ -71,11 +66,6 @@ export const lodges: Lodge[] = [
     gallery: [i.roomDark, i.dinner, i.fog, i.seljalandsfoss],
     highlights: [i.dinner, i.fog, i.horseWhite, i.blackBeach],
     activities: ["geothermal-baths", "super-jeep", "horse-riding", "private-chef"],
-    quote: {
-      text: "[PLACEHOLDER — press or guest quote about the lodge, to be sourced and attributed]",
-      author: "[Attribution]",
-      placeholder: true,
-    },
   },
   {
     slug: "the-fjord-house",
@@ -105,11 +95,6 @@ export const lodges: Lodge[] = [
     gallery: [i.roomLight, i.roomClassic, i.calmReflection, i.mistyPeaks],
     highlights: [i.coastTwilight, i.whale, i.aerialShore, i.dinner],
     activities: ["whale-watching", "puffin-watching", "helicopter-flights", "private-chef"],
-    quote: {
-      text: "[PLACEHOLDER — press or guest quote about the lodge, to be sourced and attributed]",
-      author: "[Attribution]",
-      placeholder: true,
-    },
   },
 ];
 

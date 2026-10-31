@@ -1,8 +1,8 @@
 "use client";
 
 import { useReducedMotion } from "@/lib/useReducedMotion";
-import Image from "next/image";
-import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
+import Image from "@/components/ui/Image";
+import { AnimatePresence, m, useScroll, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
 import { seasons } from "@/data/seasons";
 import type { SeasonKey } from "@/data/types";
@@ -23,9 +23,9 @@ export function SeasonsBlock() {
 
   return (
     <section id="seasons" ref={ref} className="relative min-h-[150vh] overflow-hidden bg-white text-atlantic md:min-h-[170vh]">
-      <motion.div className="absolute inset-x-0 bottom-0 top-[18vh]" style={{ y: reduce ? 0 : y }}>
+      <m.div className="absolute inset-x-0 bottom-0 top-[18vh]" style={{ y: reduce ? 0 : y }}>
         <AnimatePresence mode="sync">
-          <motion.div
+          <m.div
             key={current.key}
             className="absolute inset-0"
             initial={{ opacity: 0 }}
@@ -34,9 +34,9 @@ export function SeasonsBlock() {
             transition={{ duration: 1.2 }}
           >
             <Image src={current.image.src} alt={current.image.alt} fill sizes="100vw" className="object-cover" />
-          </motion.div>
+          </m.div>
         </AnimatePresence>
-      </motion.div>
+      </m.div>
       {/* white fade at the top so the image rises out of the page */}
       <div aria-hidden className="absolute inset-x-0 top-0 h-[70vh] bg-gradient-to-b from-white via-white/85 to-transparent" />
       <GridLines />

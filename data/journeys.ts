@@ -1,12 +1,6 @@
 import { images as i } from "./images";
 import type { Journey } from "./types";
 
-const placeholderQuote = {
-  text: "[PLACEHOLDER — guest quote to be sourced and attributed with permission]",
-  author: "[Guest name]",
-  placeholder: true as const,
-};
-
 const commonIncluded = [
   "One dedicated specialist from first call to final night",
   "Private driver-guide throughout",
@@ -61,7 +55,6 @@ export const journeys: Journey[] = [
     ],
     included: [...commonIncluded, "Private whale-watching charter", "Guided glacier hike"],
     excluded: commonExcluded,
-    quote: placeholderQuote,
     verify: ["Seasonal road conditions", "Whale-watching season"],
   },
   {
@@ -99,7 +92,6 @@ export const journeys: Journey[] = [
     ],
     included: [...commonIncluded, "Private super-jeep and driver-guide", "Helicopter flight out of the highlands"],
     excluded: commonExcluded,
-    quote: placeholderQuote,
     verify: ["F-road opening dates", "Highland hut availability", "Helicopter landing permissions"],
   },
   {
@@ -136,7 +128,6 @@ export const journeys: Journey[] = [
     ],
     included: [...commonIncluded, "Domestic flight to the Westfjords", "Private boat charter"],
     excluded: commonExcluded,
-    quote: placeholderQuote,
     verify: ["Midnight sun dates", "Puffin nesting season", "Ferry schedule"],
   },
   {
@@ -173,7 +164,6 @@ export const journeys: Journey[] = [
     ],
     included: [...commonIncluded, "Private ice cave visit with certified guide", "Nightly aurora watch"],
     excluded: commonExcluded,
-    quote: placeholderQuote,
     verify: ["Ice cave season", "Ice cave guide certification", "Aurora is never guaranteed"],
   },
   {
@@ -210,7 +200,6 @@ export const journeys: Journey[] = [
     ],
     included: [...commonIncluded, "Private helicopter flights as listed", "Glacier landing"],
     excluded: commonExcluded,
-    quote: placeholderQuote,
     verify: ["Helicopter operator and landing permits", "Volcanic activity restrictions"],
   },
   {
@@ -246,7 +235,6 @@ export const journeys: Journey[] = [
     ],
     included: [...commonIncluded, "Private Silfra snorkel with licensed operator", "Private chef dinner"],
     excluded: commonExcluded,
-    quote: placeholderQuote,
     verify: ["Silfra minimum age and fitness requirements"],
   },
 ];

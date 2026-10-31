@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { AnimatePresence, m, useMotionValueEvent, useScroll } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { primaryNav, secondaryNav } from "@/config/site";
 import { flyouts } from "@/lib/nav";
@@ -62,7 +62,7 @@ export function Header() {
 
   return (
     <>
-      <motion.header
+      <m.header
         className="fixed inset-x-0 top-0 z-50"
         animate={{ y: hidden ? -90 : 0 }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
@@ -113,13 +113,13 @@ export function Header() {
             </Link>
           </div>
         </div>
-      </motion.header>
+      </m.header>
 
       {/* Desktop flyout */}
       <AnimatePresence>
         {flyout ? (
           <>
-            <motion.div
+            <m.div
               key="scrim"
               className="fixed inset-0 z-[55] bg-atlantic/30 backdrop-blur-[6px]"
               initial={{ opacity: 0 }}
@@ -127,7 +127,7 @@ export function Header() {
               exit={{ opacity: 0 }}
               onClick={() => setActive(null)}
             />
-            <motion.div
+            <m.div
               key="panel"
               id="flyout"
               ref={panelRef}
@@ -176,7 +176,7 @@ export function Header() {
               <Link href="/enquire" className="m-2 flex h-20 items-center justify-center rounded-[2px] bg-glacier text-sm font-medium transition-colors hover:bg-aurora hover:text-white">
                 Enquire now
               </Link>
-            </motion.div>
+            </m.div>
           </>
         ) : null}
       </AnimatePresence>
@@ -184,7 +184,7 @@ export function Header() {
       {/* Mobile menu */}
       <AnimatePresence>
         {mobileOpen ? (
-          <motion.div
+          <m.div
             id="mobile-menu"
             ref={panelRef}
             role="dialog"
@@ -231,7 +231,7 @@ export function Header() {
             <Link href="/enquire" className="m-3 flex h-16 items-center justify-center rounded-[2px] bg-aurora text-sm font-medium text-white">
               Enquire now
             </Link>
-          </motion.div>
+          </m.div>
         ) : null}
       </AnimatePresence>
     </>

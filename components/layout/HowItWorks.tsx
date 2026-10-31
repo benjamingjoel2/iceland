@@ -1,11 +1,10 @@
 "use client";
 
-import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { AnimatePresence, m, useMotionValueEvent, useScroll } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { steps } from "@/data/steps";
-import { contact } from "@/config/site";
 import { useUI } from "./UIProvider";
 
 /** Fixed side tab + right-hand drawer with the six steps, as on the reference. */
@@ -38,7 +37,7 @@ export function HowItWorks() {
     <>
       <AnimatePresence>
         {howOpen ? (
-          <motion.div
+          <m.div
             className="fixed inset-0 z-[65] bg-atlantic/40 backdrop-blur-[4px]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -48,7 +47,7 @@ export function HowItWorks() {
         ) : null}
       </AnimatePresence>
 
-      <motion.div
+      <m.div
         className="fixed bottom-0 right-0 top-0 z-[70] flex items-center"
         initial={false}
         animate={{ x: howOpen ? 0 : "calc(100% - 0px)" }}
@@ -56,7 +55,7 @@ export function HowItWorks() {
         style={{ width: "min(720px, 100vw)" }}
       >
         {/* Tab */}
-        <motion.button
+        <m.button
           type="button"
           onClick={() => setHowOpen(!howOpen)}
           aria-expanded={howOpen}
@@ -68,7 +67,7 @@ export function HowItWorks() {
         >
           <span aria-hidden className="text-sm leading-none">{howOpen ? "×" : "+"}</span>
           <span className="whitespace-nowrap [writing-mode:vertical-rl] rotate-180">{howOpen ? "Close" : "How it works"}</span>
-        </motion.button>
+        </m.button>
 
         {/* Drawer */}
         <div
@@ -91,14 +90,6 @@ export function HowItWorks() {
                 </h3>
                 <p className="t-body text-atlantic/90">
                   {s.body}
-                  {s.n === 1 ? (
-                    <>
-                      {" "}
-                      <a href={contact.scheduleCallUrl} className="text-aurora underline underline-offset-2">
-                        Book a call directly.
-                      </a>
-                    </>
-                  ) : null}
                 </p>
               </li>
             ))}
@@ -107,7 +98,7 @@ export function HowItWorks() {
             Start planning
           </Link>
         </div>
-      </motion.div>
+      </m.div>
     </>
   );
 }

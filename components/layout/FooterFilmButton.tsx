@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/ui/Image";
 import { useUI } from "./UIProvider";
 
 export function FooterFilmButton({ image }: { image: string }) {

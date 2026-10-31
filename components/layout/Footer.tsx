@@ -3,10 +3,8 @@ import { brand, contact, legalNav } from "@/config/site";
 import { journeys } from "@/data/journeys";
 import { lodges } from "@/data/lodges";
 import { regions } from "@/data/regions";
-import { quotes } from "@/data/people";
 import { images } from "@/data/images";
 import { GridLines } from "@/components/ui/GridLines";
-import { PlaceholderFlag } from "@/components/ui/Flag";
 import { FooterFilmButton } from "./FooterFilmButton";
 import { NewsletterButton } from "./NewsletterButton";
 
@@ -20,9 +18,6 @@ function Col({ title, children }: { title: string; children: React.ReactNode }) 
     </div>
   );
 }
-
-/** Placeholder badges — replace with the real licence and award marks. */
-const badges = ["Tourist Board licence", "Quality label", "Award", "Award", "Award", "Award"];
 
 export function Footer() {
   return (
@@ -40,21 +35,19 @@ export function Footer() {
 
           {/* Contacts */}
           <div className="col-span-2 py-2.5 sm:col-span-1 md:col-span-2 md:col-start-2">
-            <Col title="Guest enquiries">
+            <Col title="Enquiries, trade and press">
               <ul>
-                <li><a className={linkCls} href={`mailto:${contact.emails.guests}`}>{contact.emails.guests}</a></li>
-                <li><a className={linkCls} href={contact.phoneHref}>{contact.phone}</a></li>
-                <li><a className={linkCls} href={contact.scheduleCallUrl}>Schedule a call</a></li>
+                <li><a className={linkCls} href={`mailto:${contact.email}`}>{contact.email}</a></li>
               </ul>
             </Col>
-            <Col title="Trade enquiries">
-              <ul><li><a className={linkCls} href={`mailto:${contact.emails.trade}`}>{contact.emails.trade}</a></li></ul>
-            </Col>
-            <Col title="Press">
-              <ul><li><a className={linkCls} href={`mailto:${contact.emails.press}`}>{contact.emails.press}</a></li></ul>
-            </Col>
-            <Col title="Registered office">
-              <p className="t-body text-slate">{brand.legalName}<br />{contact.office}</p>
+            <Col title="Office">
+              <address className="t-body not-italic text-slate">
+                {brand.legalName}
+                <br />
+                Gróska, Bjargargata 1
+                <br />
+                102 Reykjavík, Iceland
+              </address>
             </Col>
           </div>
 
@@ -90,16 +83,8 @@ export function Footer() {
             <Col title="About">
               <ul>
                 <li><Link className={linkCls} href="/about">Our story</Link></li>
-                <li><Link className={linkCls} href="/about/specialists">Specialists</Link></li>
                 <li><Link className={linkCls} href="/journal">Journal</Link></li>
                 <li><Link className={linkCls} href="/faq">FAQ</Link></li>
-              </ul>
-            </Col>
-            <Col title="Social">
-              <ul>
-                {contact.social.map((s) => (
-                  <li key={s.label}><a className={linkCls} href={s.href}>{s.label}</a></li>
-                ))}
               </ul>
             </Col>
           </div>
@@ -125,28 +110,13 @@ export function Footer() {
         </svg>
 
         {/* Bottom bar */}
-        <div className="mt-6 grid grid-cols-1 items-center gap-6 border-t border-atlantic/10 py-6 md:grid-cols-3">
-          <ul className="flex flex-wrap items-center gap-2" aria-label="Licences and awards (placeholders)">
-            {badges.map((b, i) => (
-              <li key={i} title={`${b} — placeholder`} className="flex h-10 w-10 items-center justify-center rounded-full border border-dashed border-atlantic/30 text-center text-[7px] font-semibold uppercase leading-tight text-atlantic">
-                {b}
-              </li>
-            ))}
-          </ul>
-          <figure className="text-center">
-            <blockquote className="t-eyebrow text-[17px]">“{quotes.closing.text}”</blockquote>
-            <figcaption className="mt-1 flex items-center justify-center gap-2 font-display text-[10px] uppercase tracking-[0.2em] text-slate">
-              — {quotes.closing.author} <PlaceholderFlag />
-            </figcaption>
-          </figure>
+        <div className="mt-6 border-t border-atlantic/10 py-6">
           <div className="md:text-right">
             <ul className="flex flex-wrap gap-x-4 gap-y-1 md:justify-end">
               {legalNav.map((l) => (
                 <li key={l.href}><Link href={l.href} className="t-small text-slate hover:text-atlantic">{l.label}</Link></li>
               ))}
             </ul>
-            <p className="t-small mt-2 text-slate">{contact.license}</p>
-            <p className="t-small mt-1 text-slate">© {new Date().getFullYear()} {brand.legalName}. All rights reserved.</p>
           </div>
         </div>
       </div>

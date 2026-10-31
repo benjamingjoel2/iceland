@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const seasonsOptions = ["Summer", "Winter", "Not sure"] as const;
-export const contactMethods = ["Email", "WhatsApp", "Telephone"] as const;
+export const contactMethods = ["Email", "Telephone"] as const;
 export const budgetOptions = [
   "Under US$10,000 per person",
   "US$10,000–20,000 per person",
@@ -78,7 +78,7 @@ export const enquirySchema = z.object({
   // Honeypot — must stay empty.
   company: z.string().max(0).optional().default(""),
 }).superRefine((v, ctx) => {
-  if ((v.contactMethod === "WhatsApp" || v.contactMethod === "Telephone") && v.phone.trim() === "") {
+  if (v.contactMethod === "Telephone" && v.phone.trim() === "") {
     ctx.addIssue({ code: "custom", path: ["phone"], message: `Please add a phone number so we can reach you by ${v.contactMethod}` });
   }
 });
