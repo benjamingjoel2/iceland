@@ -50,3 +50,7 @@ next-env.d.ts
 /app/fr
 /app/de
 /app/es
+
+# Cloudflare Pages build output
+/dist-pages
+/.cf-bundle
