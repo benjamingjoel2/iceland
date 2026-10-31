@@ -1,0 +1,149 @@
+#!/usr/bin/env node
+/**
+ * Builds the French, German and Spanish versions of the site before `next build`.
+ *
+ * English is the source: pages live in app/(en) and keep their current URLs.
+ * For each locale this script writes a translated copy of the route tree to app/<locale>/
+ * (URLs /fr/..., /de/..., /es/...) and of the shared code and content to .i18n/<locale>/.
+ * User-visible strings are replaced from i18n/<locale>.json (English source -> translation),
+ * internal links get the locale prefix, and translated long-form content comes from
+ * i18n/content/<locale>/. Everything is pre-rendered; no translation code ships to the browser.
+ *
+ *   node scripts/i18n-build.mjs            generate (runs automatically before dev/build)
+ *   node scripts/i18n-build.mjs extract    write i18n/strings.json (every candidate string, for translators)
+ *   node scripts/i18n-build.mjs missing    list strings with no translation per locale
+ * Generated folders are git-ignored.
+ */
+import fs from 'node:fs';
+import path from 'node:path';
+import { extract, translateSource, walk } from './i18n-core.mjs';
+import config from './i18n.config.mjs';
+
+const ROOT = process.cwd();
+const LOCALES = config.locales; // e.g. ['fr', 'de', 'es']
+const EN_APP = path.join(ROOT, config.enAppDir); // app/(en)
+const SHARED = config.sharedDirs; // e.g. ['components', 'lib', 'data', 'config']
+const CODE = /\.(tsx?|jsx?|mjs)$/;
+
+const routeSegs = new Set(
+  fs.readdirSync(EN_APP, { withFileTypes: true })
+    .filter((e) => e.isDirectory() && !/^[[(@_]/.test(e.name))
+    .map((e) => e.name),
+);
+
+function prefixFor(locale) {
+  return (s, node, ctx, isHead) => {
+    // Route strings are prefixed wherever they appear (href and path props included),
+    // except typed-route patterns such as "/tours/[slug]".
+    if (s.includes('[')) return null;
+    if (s === '/') {
+      // Only the home link itself: href/path values and JSX href attributes, not "/" used in code.
+      const p = node.parent;
+      const name = p && p.name && typeof p.name.getText === 'function' ? p.name.getText().replace(/['"]/g, '') : '';
+      const jsxName = p && p.parent && p.parent.name && typeof p.parent.name.getText === 'function' ? p.parent.name.getText() : '';
+      const homeLink = ['href', 'path'].includes(name) || jsxName === 'href';
+      return homeLink && !isHead ? `/${locale}` : null;
+    }
+    // Same-page anchors on the home page: "/#seasons" -> "/fr#seasons".
+    if (s.startsWith('/#')) return `/${locale}${s.slice(1)}`;
+    const m = s.match(/^\/([^/?#]+)(?=[/?#]|$)/);
+    if (m && routeSegs.has(m[1])) return `/${locale}${s}`;
+    if (isHead && s === '/' ) return null;
+    return null;
+  };
+}
+
+function importRewriteFor(locale, fromFile, outFile) {
+  return (spec) => {
+    for (const d of SHARED) {
+      if (spec === `@/${d}` || spec.startsWith(`@/${d}/`)) return spec.replace(`@/${d}`, `@/.i18n/${locale}/${d}`);
+    }
+    if (spec.startsWith('.')) {
+      // relative import: if the target is not copied alongside, point back to the original
+      const target = path.resolve(path.dirname(fromFile), spec);
+      const copied = target.startsWith(EN_APP) || SHARED.some((d) => target.startsWith(path.join(ROOT, d) + path.sep) || target === path.join(ROOT, d));
+      if (!copied) {
+        let rel = path.relative(path.dirname(outFile), target).split(path.sep).join('/');
+        if (!rel.startsWith('.')) rel = './' + rel;
+        return rel;
+      }
+    }
+    return spec;
+  };
+}
+
+const loadDict = (l) => {
+  const f = path.join(ROOT, 'i18n', `${l}.json`);
+  return fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, 'utf8')) : {};
+};
+
+function special(locale) {
+  const intl = { fr: 'fr-FR', de: 'de-DE', es: 'es-ES' }[locale];
+  const og = { fr: 'fr_FR', de: 'de_DE', es: 'es_ES' }[locale];
+  return (text, node, s) => {
+    if (s.kind === 'str') {
+      if (/^en[-_](GB|US|IE|CA|AU|NZ|ZA)$/.test(text)) return JSON.stringify(text.includes('_') ? og : intl);
+      if (text === 'en' && /\blang\b|inLanguage|locale|hrefLang/.test(node.parent.getText().slice(0, 40))) return JSON.stringify(locale);
+    }
+    if (s.kind === 'tpl') {
+      const head = node.head.text;
+      for (const d of [...SHARED, 'content']) {
+        if (head.startsWith(`@/${d}/`)) return node.getText().replace(`@/${d}/`, `@/.i18n/${locale}/${d}/`);
+      }
+    }
+    return config.special ? config.special(locale, text, node, s) : null;
+  };
+}
+
+function copyTree(fromDir, toDir, locale, dict) {
+  for (const f of walk(fromDir)) {
+    const rel = path.relative(fromDir, f);
+    const out = path.join(toDir, rel);
+    fs.mkdirSync(path.dirname(out), { recursive: true });
+    if (CODE.test(f) && !f.endsWith('.d.ts')) {
+      const text = translateSource(f, {
+        dict,
+        fileKey: path.relative(ROOT, f).split(path.sep).join('/'),
+        prefixRoute: prefixFor(locale),
+        importRewrite: importRewriteFor(locale, f, out),
+        special: special(locale),
+      });
+      fs.writeFileSync(out, `// GENERATED by scripts/i18n-build.mjs from ${path.relative(ROOT, f)}. Do not edit.\n` + text);
+    } else {
+      fs.copyFileSync(f, out);
+    }
+  }
+}
+
+const cmd = process.argv[2] || 'build';
+const sourceFiles = () => [EN_APP, ...SHARED.map((d) => path.join(ROOT, d))].flatMap((d) => walk(d, (f) => CODE.test(f) && !f.endsWith('.d.ts')))
+  .filter((f) => !(config.excludeFromExtract || []).some((x) => f.includes(x)));
+
+if (cmd === 'extract') {
+  const m = extract(sourceFiles());
+  const obj = Object.fromEntries([...m.entries()].sort((a, b) => a[1][0].localeCompare(b[1][0])).map(([k, v]) => [k, v.slice(0, 3)]));
+  fs.mkdirSync(path.join(ROOT, 'i18n'), { recursive: true });
+  fs.writeFileSync(path.join(ROOT, 'i18n', 'strings.json'), JSON.stringify(obj, null, 1) + '\n');
+  console.log(`extracted ${m.size} strings -> i18n/strings.json`);
+} else if (cmd === 'missing') {
+  const all = Object.keys(JSON.parse(fs.readFileSync(path.join(ROOT, 'i18n', 'strings.json'), 'utf8')));
+  const skip = new Set(JSON.parse(fs.existsSync(path.join(ROOT, 'i18n', 'untranslated.json')) ? fs.readFileSync(path.join(ROOT, 'i18n', 'untranslated.json'), 'utf8') : '[]'));
+  for (const l of LOCALES) {
+    const d = loadDict(l);
+    const miss = all.filter((s) => d[s] == null && !skip.has(s));
+    console.log(`${l}: ${miss.length} missing`);
+    if (process.argv[3] === '--list') miss.forEach((s) => console.log('  ' + JSON.stringify(s)));
+  }
+} else {
+  fs.rmSync(path.join(ROOT, '.i18n'), { recursive: true, force: true });
+  for (const l of LOCALES) {
+    const dict = loadDict(l);
+    fs.rmSync(path.join(ROOT, 'app', l), { recursive: true, force: true });
+    copyTree(EN_APP, path.join(ROOT, 'app', l), l, dict);
+    for (const d of SHARED) copyTree(path.join(ROOT, d), path.join(ROOT, '.i18n', l, d), l, dict);
+    const content = path.join(ROOT, 'i18n', 'content', l);
+    if (fs.existsSync(content)) fs.cpSync(content, path.join(ROOT, '.i18n', l, 'content'), { recursive: true });
+    if (config.after) config.after(l, ROOT);
+  }
+  console.log(`i18n: generated ${LOCALES.join(', ')} (${routeSegs.size} top-level routes)`);
+}

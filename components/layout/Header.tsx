@@ -8,6 +8,7 @@ import { primaryNav, secondaryNav } from "@/config/site";
 import { flyouts } from "@/lib/nav";
 import { Logo } from "@/components/ui/Logo";
 import { CurrencySwitcher } from "./CurrencySwitcher";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 type Key = (typeof primaryNav)[number]["key"];
 
@@ -101,10 +102,14 @@ export function Header() {
           </Link>
 
           <div className="flex items-center gap-1">
+            {/* Below lg the selector lives in the mobile menu. */}
+            <div className="hidden lg:block">
+              <LanguageSwitcher variant={scrolled ? "glass-light" : "glass"} />
+            </div>
             <div className="hidden md:block">
               <CurrencySwitcher variant={scrolled ? "glass-light" : "glass"} />
             </div>
-            <Link href={secondaryNav[0].href} className={`${glassBtn} hidden min-w-[110px] lg:flex`}>
+            <Link href={secondaryNav[0].href} className={`${glassBtn} hidden min-w-[110px] xl:flex`}>
               {secondaryNav[0].label}
             </Link>
             <Link href={secondaryNav[1].href} className={`${glassBtn} min-w-[96px] !bg-aurora hover:!bg-atlantic lg:!bg-white/20 lg:hover:!bg-aurora`}>
@@ -227,6 +232,9 @@ export function Header() {
                 </details>
               ))}
               <Link href="/prices" className="t-h3 block py-4">Dates &amp; Prices</Link>
+              <div className="mt-6">
+                <LanguageSwitcher variant="light" />
+              </div>
             </div>
             <Link href="/enquire" className="m-3 flex h-16 items-center justify-center rounded-[2px] bg-aurora text-sm font-medium text-white">
               Enquire now

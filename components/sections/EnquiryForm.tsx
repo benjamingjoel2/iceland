@@ -5,12 +5,17 @@ import { useId, useRef, useState } from "react";
 import Link from "next/link";
 import { contact } from "@/config/site";
 import {
+  budgetLabels,
   budgetOptions,
+  contactLabels,
   contactMethods,
   dialCodes,
   enquirySchema,
+  heardLabels,
   heardOptions,
+  interestLabels,
   interestOptions,
+  seasonLabels,
   seasonsOptions,
 } from "@/lib/enquiry";
 
@@ -52,7 +57,7 @@ export function EnquiryForm({ journeys, initialJourney = "" }: { journeys: Journ
   const formRef = useRef<HTMLFormElement>(null);
   const [season, setSeason] = useState<string>("");
   const [interests, setInterests] = useState<string[]>([]);
-  const [contactMethod, setContactMethod] = useState<string>("Email");
+  const [contactMethod, setContactMethod] = useState<string>("email");
   const [journey, setJourney] = useState(initialJourney);
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
@@ -125,7 +130,7 @@ export function EnquiryForm({ journeys, initialJourney = "" }: { journeys: Journ
           <p className="t-eyebrow mb-4 text-white/80">Thank you{firstName ? `, ${firstName}` : ""}</p>
           <h2 className="t-h3">Your journey north has begun</h2>
           <p className="t-body mx-auto mt-6 max-w-[26rem] text-white/85">
-            Your specialist will be in touch within one working day, {contactMethod === "Email" ? "by email" : "by telephone"}, to talk through your ideas. There is
+            Your specialist will be in touch within one working day, {contactMethod === "email" ? "by email" : "by telephone"}, to talk through your ideas. There is
             nothing more you need to do.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-2">
@@ -164,9 +169,9 @@ export function EnquiryForm({ journeys, initialJourney = "" }: { journeys: Journ
                   className={`${tile} ${season === s ? tileOn : tileOff}`}
                 >
                   <span>
-                    {s}
+                    {seasonLabels[s]}
                     <span className="block text-[11px] font-normal opacity-70">
-                      {s === "Summer" ? "Jun – Aug" : s === "Winter" ? "Oct – Mar" : "Help me choose"}
+                      {s === "summer" ? "Jun – Aug" : s === "winter" ? "Oct – Mar" : "Help me choose"}
                     </span>
                   </span>
                 </button>
@@ -203,9 +208,9 @@ export function EnquiryForm({ journeys, initialJourney = "" }: { journeys: Journ
               <select id="journey" value={journey} onChange={(e) => setJourney(e.target.value)} className={`${input} appearance-none pr-10`}>
                 <option value="">Not sure yet — help me decide</option>
                 {journeys.map((j) => (
-                  <option key={j.slug} value={j.title}>{j.title}</option>
+                  <option key={j.slug} value={j.slug}>{j.title}</option>
                 ))}
-                <option value="Something bespoke">Something bespoke</option>
+                <option value="bespoke">Something bespoke</option>
               </select>
               <Chevron />
             </div>
@@ -223,7 +228,7 @@ export function EnquiryForm({ journeys, initialJourney = "" }: { journeys: Journ
                     onClick={() => setInterests((cur) => (on ? cur.filter((x) => x !== opt) : [...cur, opt]))}
                     className={`${tile} ${on ? tileOn : tileOff}`}
                   >
-                    {opt}
+                    {interestLabels[opt]}
                   </button>
                 );
               })}
@@ -238,7 +243,7 @@ export function EnquiryForm({ journeys, initialJourney = "" }: { journeys: Journ
                   <select id="budget" name="budget" defaultValue="" data-field="budget" aria-invalid={!!errors.budget} aria-describedby={errors.budget ? "budget-err" : undefined} className={`${input} appearance-none pr-10`}>
                     <option value="" disabled>Budget range*</option>
                     {budgetOptions.map((b) => (
-                      <option key={b} value={b}>{b}</option>
+                      <option key={b} value={b}>{budgetLabels[b]}</option>
                     ))}
                   </select>
                   <Chevron />
@@ -251,7 +256,7 @@ export function EnquiryForm({ journeys, initialJourney = "" }: { journeys: Journ
                   <select id="heard" name="heard" defaultValue="" className={`${input} appearance-none pr-10`}>
                     <option value="">How did you hear about us?</option>
                     {heardOptions.map((h) => (
-                      <option key={h} value={h}>{h}</option>
+                      <option key={h} value={h}>{heardLabels[h]}</option>
                     ))}
                   </select>
                   <Chevron />
@@ -285,7 +290,7 @@ export function EnquiryForm({ journeys, initialJourney = "" }: { journeys: Journ
               </div>
               <div>
                 <label htmlFor="phone" className="sr-only">Phone number</label>
-                <input id="phone" name="phone" type="tel" autoComplete="tel-national" placeholder={contactMethod === "Email" ? "Phone number" : "Phone number*"} data-field="phone" aria-invalid={!!errors.phone} aria-describedby={errors.phone ? "phone-err" : undefined} className={input} />
+                <input id="phone" name="phone" type="tel" autoComplete="tel-national" placeholder={contactMethod === "email" ? "Phone number" : "Phone number*"} data-field="phone" aria-invalid={!!errors.phone} aria-describedby={errors.phone ? "phone-err" : undefined} className={input} />
                 <Err id="phone-err" msg={errors.phone} />
               </div>
             </div>
@@ -293,7 +298,7 @@ export function EnquiryForm({ journeys, initialJourney = "" }: { journeys: Journ
             <div className="grid grid-cols-2 gap-2" role="radiogroup" aria-label="Preferred contact method">
               {contactMethods.map((m) => (
                 <button key={m} type="button" role="radio" aria-checked={contactMethod === m} onClick={() => setContactMethod(m)} className={`${tile} ${contactMethod === m ? tileOn : tileOff}`}>
-                  {m}
+                  {contactLabels[m]}
                 </button>
               ))}
             </div>

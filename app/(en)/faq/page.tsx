@@ -17,7 +17,13 @@ export const metadata = pageMetadata({
   image: images.snowTrees.src,
 });
 
-const order: FaqCategory[] = ["When to go", "Getting here", "On the journey", "Booking"];
+// `key` matches the data; `label` and `anchor` are what visitors see (translated per locale).
+const order: { key: FaqCategory; label: string; anchor: string }[] = [
+  { key: "When to go", label: "When to go", anchor: "when-to-go" },
+  { key: "Getting here", label: "Getting here", anchor: "getting-here" },
+  { key: "On the journey", label: "On the journey", anchor: "on-the-journey" },
+  { key: "Booking", label: "Booking", anchor: "booking" },
+];
 
 export default function FaqPage() {
   const jsonLd = {
@@ -41,19 +47,19 @@ export default function FaqPage() {
           <nav aria-label="FAQ categories" className="col-span-4 md:col-span-2 md:col-start-2">
             <ul className="space-y-2 md:sticky md:top-28">
               {order.map((c) => (
-                <li key={c}>
-                  <a href={`#${c.toLowerCase().replace(/\s+/g, "-")}`} className="t-eyebrow text-[17px] hover:text-aurora">{c}</a>
+                <li key={c.key}>
+                  <a href={`#${c.anchor}`} className="t-eyebrow text-[17px] hover:text-aurora">{c.label}</a>
                 </li>
               ))}
             </ul>
           </nav>
           <div className="col-span-4 md:col-span-7 md:col-start-5">
             {order.map((c) => (
-              <div key={c} id={c.toLowerCase().replace(/\s+/g, "-")} className="mb-16 scroll-mt-24">
-                <h2 className="t-label mb-4">{c}</h2>
+              <div key={c.key} id={c.anchor} className="mb-16 scroll-mt-24">
+                <h2 className="t-label mb-4">{c.label}</h2>
                 <div className="border-t border-atlantic/10">
                   {faqs
-                    .filter((f) => f.category === c)
+                    .filter((f) => f.category === c.key)
                     .map((f) => (
                       <details key={f.q} className="group border-b border-atlantic/10">
                         <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-5 font-serif text-[clamp(1.25rem,1.7vw,1.5rem)] leading-tight">

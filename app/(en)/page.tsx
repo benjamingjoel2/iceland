@@ -3,7 +3,6 @@ import { brand } from "@/config/site";
 import { journeys } from "@/data/journeys";
 import { lodges } from "@/data/lodges";
 import { images } from "@/data/images";
-import { quotes } from "@/data/people";
 import { gateway } from "@/data/gateway";
 import { GiantHero } from "@/components/sections/GiantHero";
 import { IntroStatement } from "@/components/sections/IntroStatement";
@@ -15,11 +14,12 @@ import { QuoteAndRoute } from "@/components/sections/QuoteAndRoute";
 import { FlightRoute } from "@/components/sections/FlightRoute";
 import { CtaBanner } from "@/components/sections/CtaBanner";
 import { GridLines } from "@/components/ui/GridLines";
+import { pageAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: { absolute: `${brand.name} — Private luxury journeys in Iceland` },
   description: `${brand.tagline} ${brand.promise}`,
-  alternates: { canonical: brand.url },
+  alternates: pageAlternates({ path: "/" }),
 };
 
 export default function Home() {
@@ -54,7 +54,7 @@ export default function Home() {
         }}
       />
 
-      <QuoteAndRoute image={images.snowRange} quote={quotes.writer} route={gateway.code} />
+      <QuoteAndRoute image={images.snowRange} route={gateway.code} />
       <FlightRoute />
       <CtaBanner image={images.waterfallFigure} />
     </>

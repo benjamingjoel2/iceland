@@ -54,6 +54,18 @@ body {
   outline-offset: 3px;
 }
 
+/* Decorative scribbles under wide titles can poke past the edge on phones; clip (not hidden,
+   so sticky sections keep working) instead of letting the page scroll sideways. */
+#main {
+  overflow-x: clip;
+}
+
+/* Long German compounds ("Buchungsbedingungen") in large headings: hyphenate rather than overflow. */
+:lang(de) :is(h1, h2, h3) {
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
 /* ---------- Type scale (measured from the reference, rebuilt) ---------- */
 @utility t-giant {
   font-family: var(--font-display);
