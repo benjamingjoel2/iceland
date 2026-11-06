@@ -7,7 +7,7 @@ import { useCurrency } from "@/lib/currency";
 const codes = Object.keys(currencies) as CurrencyCode[];
 
 /** Compact currency picker. All displayed prices convert from base USD. */
-export function CurrencySwitcher({ variant = "glass" }: { variant?: "glass" | "glass-light" | "light" }) {
+export function CurrencySwitcher({ variant = "glass" }: { variant?: "glass" | "glass-light" | "light" | "plain" }) {
   const { currency, setCurrency } = useCurrency();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -25,7 +25,9 @@ export function CurrencySwitcher({ variant = "glass" }: { variant?: "glass" | "g
   }, [open]);
 
   const btn =
-    variant === "glass"
+    variant === "plain"
+      ? "bg-transparent hover:text-aurora-glow"
+      : variant === "glass"
       ? "glass text-white hover:bg-aurora"
       : variant === "glass-light"
         ? "glass-light text-atlantic hover:bg-aurora hover:text-white"

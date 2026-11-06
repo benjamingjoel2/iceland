@@ -6,7 +6,6 @@ import { pageMetadata } from "@/lib/seo";
 import { aboutTabs } from "@/lib/nav";
 import { PageHero } from "@/components/sections/PageHero";
 import { TabBar } from "@/components/sections/TabBar";
-import { CtaBanner } from "@/components/sections/CtaBanner";
 import { GridLines } from "@/components/ui/GridLines";
 import { VerifyFlag } from "@/components/ui/Flag";
 
@@ -83,7 +82,6 @@ export default function FaqPage() {
           </div>
         </div>
       </section>
-      <CtaBanner image={images.auroraTall} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     </>
   );

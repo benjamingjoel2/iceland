@@ -7,7 +7,6 @@ import { LabelText } from "@/components/sections/Blocks";
 import { StackedPanels } from "@/components/sections/StackedPanels";
 import { CardFlick } from "@/components/sections/CardFlick";
 import { SectionTitle } from "@/components/sections/SectionTitle";
-import { CtaBanner } from "@/components/sections/CtaBanner";
 import { GridLines } from "@/components/ui/GridLines";
 import { PlaceholderFlag } from "@/components/ui/Flag";
 
@@ -52,7 +51,6 @@ export default function LodgesIndex() {
           </div>
         </div>
       </section>
-      <CtaBanner image={images.snowCabin} />
     </>
   );
 }

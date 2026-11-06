@@ -4,7 +4,6 @@ import { posts } from "@/data/posts";
 import { images } from "@/data/images";
 import { pageMetadata } from "@/lib/seo";
 import { PageHero } from "@/components/sections/PageHero";
-import { CtaBanner } from "@/components/sections/CtaBanner";
 import { GridLines } from "@/components/ui/GridLines";
 import { Reveal } from "@/components/motion/Reveal";
 
@@ -55,7 +54,6 @@ export default function JournalIndex() {
           </ul>
         </div>
       </section>
-      <CtaBanner image={images.glacierLagoon} />
     </>
   );
 }

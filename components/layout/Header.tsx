@@ -12,8 +12,8 @@ import { LanguageSwitcher } from "./LanguageSwitcher";
 
 type Key = (typeof primaryNav)[number]["key"];
 
-const btnBase =
-  "flex h-9 items-center justify-center rounded-[2px] px-4 text-[13px] font-medium transition-colors duration-300 hover:bg-aurora hover:text-white";
+const linkBase =
+  "flex h-9 items-center justify-center px-1 text-[13px] font-medium underline-offset-[6px] transition-colors duration-300 hover:underline";
 
 export function Header() {
   const pathname = usePathname();
@@ -58,8 +58,8 @@ export function Header() {
   }, [active, mobileOpen]);
 
   const flyout = active ? flyouts[active] : null;
-  // Over imagery the buttons are frosted glass; once over light content they turn frosted-white for legibility.
-  const glassBtn = `${btnBase} ${scrolled ? "glass-light text-atlantic" : "glass text-white"}`;
+  // Plain text links: white over the hero photo, dark once the bar turns solid over light content.
+  const navLink = linkBase;
 
   return (
     <>
@@ -71,9 +71,11 @@ export function Header() {
         <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-16 focus:z-50 focus:bg-white focus:p-3 focus:text-atlantic">
           Skip to content
         </a>
-        <div className="relative flex items-start justify-between px-3 pt-3 md:px-5 md:pt-4">
+        <div
+          className={`site-bar relative flex h-16 items-center justify-between px-4 transition-colors duration-300 md:px-10 ${scrolled ? "is-scrolled" : ""}`}
+        >
           {/* Desktop left buttons */}
-          <nav aria-label="Primary" className="hidden gap-1 lg:flex">
+          <nav aria-label="Primary" className="hidden gap-6 lg:flex">
             {primaryNav.map((item) => (
               <button
                 key={item.key}
@@ -81,7 +83,7 @@ export function Header() {
                 aria-expanded={active === item.key}
                 aria-controls="flyout"
                 onClick={() => setActive((a) => (a === item.key ? null : item.key))}
-                className={`${glassBtn} min-w-[84px] ${active === item.key ? "!bg-aurora" : ""}`}
+                className={`${navLink} ${active === item.key ? "underline" : ""}`}
               >
                 {item.label}
               </button>
@@ -89,30 +91,33 @@ export function Header() {
           </nav>
 
           {/* Mobile left */}
-          <button type="button" onClick={() => setMobileOpen(true)} className={`${glassBtn} lg:hidden`} aria-expanded={mobileOpen} aria-controls="mobile-menu">
+          <button type="button" onClick={() => setMobileOpen(true)} className={`${navLink} lg:hidden`} aria-expanded={mobileOpen} aria-controls="mobile-menu">
             Menu
           </button>
 
           <Link
             href="/"
             aria-label="Edge of North — home"
-            className="absolute left-1/2 top-3 -translate-x-1/2 text-white mix-blend-difference md:top-4"
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
           >
             <Logo />
           </Link>
 
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-5">
             {/* Below lg the selector lives in the mobile menu. */}
             <div className="hidden lg:block">
-              <LanguageSwitcher variant={scrolled ? "glass-light" : "glass"} />
+              <LanguageSwitcher variant="plain" />
             </div>
             <div className="hidden md:block">
-              <CurrencySwitcher variant={scrolled ? "glass-light" : "glass"} />
+              <CurrencySwitcher variant="plain" />
             </div>
-            <Link href={secondaryNav[0].href} className={`${glassBtn} hidden min-w-[110px] xl:flex`}>
+            <Link href={secondaryNav[0].href} className={`${navLink} hidden xl:flex`}>
               {secondaryNav[0].label}
             </Link>
-            <Link href={secondaryNav[1].href} className={`${glassBtn} min-w-[96px] !bg-aurora hover:!bg-atlantic lg:!bg-white/20 lg:hover:!bg-aurora`}>
+            <Link
+              href={secondaryNav[1].href}
+              className="flex h-9 items-center justify-center rounded-[2px] bg-aurora px-4 text-[13px] font-medium text-white transition-colors duration-300 hover:bg-atlantic"
+            >
               <span className="lg:hidden">Enquire</span>
               <span className="hidden lg:inline">{secondaryNav[1].label}</span>
             </Link>
