@@ -19,10 +19,16 @@ function split(pathname: string): [string, string] {
  * EN · FR · DE · ES: each links to the same page in that language (plain links, no redirects
  * by browser language). Styled like the header's frosted buttons.
  */
-export function LanguageSwitcher({ variant = "glass" }: { variant?: "glass" | "glass-light" | "light" }) {
+export function LanguageSwitcher({ variant = "glass" }: { variant?: "glass" | "glass-light" | "light" | "plain" }) {
   const [current, rest] = split(usePathname() || "/");
   const shell =
-    variant === "glass" ? "glass text-white" : variant === "glass-light" ? "glass-light text-atlantic" : "bg-glacier text-atlantic";
+    variant === "plain"
+      ? ""
+      : variant === "glass"
+        ? "glass text-white"
+        : variant === "glass-light"
+          ? "glass-light text-atlantic"
+          : "bg-glacier text-atlantic";
   return (
     <nav aria-label="Language">
       <ul className={`flex h-9 items-center rounded-[2px] px-1.5 text-[12px] font-medium tracking-[0.04em] ${shell}`}>

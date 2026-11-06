@@ -11,7 +11,6 @@ import { PageHero } from "@/components/sections/PageHero";
 import { TabBar } from "@/components/sections/TabBar";
 import { DayByDay, StayLink } from "@/components/sections/DayByDay";
 import { FourUp, OffsetImageText } from "@/components/sections/Blocks";
-import { CtaBanner } from "@/components/sections/CtaBanner";
 import { SectionTitle } from "@/components/sections/SectionTitle";
 import { GridLines } from "@/components/ui/GridLines";
 import { Price } from "@/components/ui/Price";
@@ -247,7 +246,6 @@ export default async function JourneyPage({ params }: PageProps<"/journeys/[slug
         title="More journeys"
         items={others.map((o) => ({ image: o.card, label: o.title, href: `/journeys/${o.slug}` }))}
       />
-      <CtaBanner image={j.hero} title="Make this journey yours" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     </>
   );

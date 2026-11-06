@@ -3,16 +3,12 @@ import { brand } from "@/config/site";
 import { journeys } from "@/data/journeys";
 import { lodges } from "@/data/lodges";
 import { images } from "@/data/images";
-import { gateway } from "@/data/gateway";
-import { GiantHero } from "@/components/sections/GiantHero";
+import { HomeHero } from "@/components/sections/HomeHero";
 import { IntroStatement } from "@/components/sections/IntroStatement";
 import { SeasonsBlock } from "@/components/sections/SeasonsBlock";
 import { SectionTitle } from "@/components/sections/SectionTitle";
 import { CardFlick } from "@/components/sections/CardFlick";
 import { LodgesHorizontal } from "@/components/sections/LodgesHorizontal";
-import { QuoteAndRoute } from "@/components/sections/QuoteAndRoute";
-import { FlightRoute } from "@/components/sections/FlightRoute";
-import { CtaBanner } from "@/components/sections/CtaBanner";
 import { GridLines } from "@/components/ui/GridLines";
 import { pageAlternates } from "@/lib/seo";
 
@@ -25,7 +21,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <GiantHero word="Iceland" />
+      <HomeHero />
       <IntroStatement
         eyebrow={brand.eyebrow}
         text="Where the Arctic Circle touches the land and the island is still being made: fire beneath, ice above and the North Atlantic all around."
@@ -54,9 +50,6 @@ export default function Home() {
         }}
       />
 
-      <QuoteAndRoute image={images.snowRange} route={gateway.code} />
-      <FlightRoute />
-      <CtaBanner image={images.waterfallFigure} />
     </>
   );
 }

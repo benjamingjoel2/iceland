@@ -50,7 +50,7 @@ export function PageHero({
     titleStyle === "display" ? "t-display" : titleStyle === "italic" ? "font-serif italic text-[clamp(2.6rem,4.45vw,4rem)] leading-none" : "t-h1";
 
   return (
-    <section ref={ref} className="relative h-[100svh] min-h-[560px] overflow-hidden bg-volcanic text-white">
+    <section data-hero="dark" ref={ref} className="relative h-[100svh] min-h-[560px] overflow-hidden bg-volcanic text-white">
       <m.div className="absolute inset-0" style={{ y: reduce ? 0 : y }}>
         <div className="absolute inset-0 animate-[slow-zoom_2.4s_cubic-bezier(.22,1,.36,1)_both]">
           <Image src={image.src} alt={image.alt} fill priority sizes="100vw" className="object-cover" />

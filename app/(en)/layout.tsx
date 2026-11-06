@@ -5,7 +5,6 @@ import { brand, contact } from "@/config/site";
 import { UIProvider } from "@/components/layout/UIProvider";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { HowItWorks } from "@/components/layout/HowItWorks";
 
 // Variable fonts, Latin subset only (it covers Icelandic: þ ð æ ö á é í ó ú ý).
 const oswald = Oswald({ subsets: ["latin"], variable: "--font-oswald", display: "swap" });
@@ -57,7 +56,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Header />
           <main id="main">{children}</main>
           <Footer />
-          <HowItWorks />
         </UIProvider>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }} />
       </body>

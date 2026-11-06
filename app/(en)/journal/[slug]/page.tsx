@@ -5,7 +5,6 @@ import { posts, postBySlug } from "@/data/posts";
 import { brand } from "@/config/site";
 import { pageMetadata } from "@/lib/seo";
 import { PageHero } from "@/components/sections/PageHero";
-import { CtaBanner } from "@/components/sections/CtaBanner";
 import { GridLines } from "@/components/ui/GridLines";
 
 export const dynamicParams = false;
@@ -55,7 +54,6 @@ export default async function PostPage({ params }: PageProps<"/journal/[slug]">)
           <Link href={`/journal/${next.slug}`} className="t-h3 mt-2 inline-block hover:text-aurora">{next.title}</Link>
         </div>
       </section>
-      <CtaBanner image={meta.hero} title="Plan your journey north" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     </>
   );

@@ -10,7 +10,6 @@ import { PageHero } from "@/components/sections/PageHero";
 import { LabelText } from "@/components/sections/Blocks";
 import { StackedPanels } from "@/components/sections/StackedPanels";
 import { SectionTitle } from "@/components/sections/SectionTitle";
-import { CtaBanner } from "@/components/sections/CtaBanner";
 import { GridLines } from "@/components/ui/GridLines";
 import { VerifyFlag } from "@/components/ui/Flag";
 import { Reveal } from "@/components/motion/Reveal";
@@ -96,7 +95,6 @@ export default function IcelandIndex() {
           </p>
         </div>
       </section>
-      <CtaBanner image={images.auroraSnow} />
     </>
   );
 }

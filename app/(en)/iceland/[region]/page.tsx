@@ -5,13 +5,11 @@ import { regions, regionBySlug } from "@/data/regions";
 import { journeys } from "@/data/journeys";
 import { experienceBySlug } from "@/data/experiences";
 import { lodges, formatCoordinates } from "@/data/lodges";
-import { images } from "@/data/images";
 import { pageMetadata } from "@/lib/seo";
 import { PageHero } from "@/components/sections/PageHero";
 import { TabBar } from "@/components/sections/TabBar";
 import { FourUp, LabelText, Statement, WideImage } from "@/components/sections/Blocks";
 import { ImageFlick } from "@/components/sections/ImageFlick";
-import { CtaBanner } from "@/components/sections/CtaBanner";
 import { GridLines } from "@/components/ui/GridLines";
 import { VerifyFlag } from "@/components/ui/Flag";
 import { ParallaxImage } from "@/components/motion/ParallaxImage";
@@ -109,7 +107,6 @@ export default async function RegionPage({ params }: PageProps<"/iceland/[region
         title={related.length ? <>Journeys<br />through here</> : <>More<br />journeys</>}
         items={[...related, ...journeys.filter((j) => !related.includes(j))].slice(0, 4).map((j) => ({ image: j.card, label: j.title, href: `/journeys/${j.slug}` }))}
       />
-      <CtaBanner image={images.mistyPeaks} />
     </>
   );
 }

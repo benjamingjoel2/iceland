@@ -5,7 +5,6 @@ import { images } from "@/data/images";
 import { pageMetadata } from "@/lib/seo";
 import { PageHero } from "@/components/sections/PageHero";
 import { LabelText } from "@/components/sections/Blocks";
-import { CtaBanner } from "@/components/sections/CtaBanner";
 import { GridLines } from "@/components/ui/GridLines";
 import { Price } from "@/components/ui/Price";
 import { VerifyFlag } from "@/components/ui/Flag";
@@ -75,7 +74,6 @@ export default function JourneysIndex() {
           ))}
         </ol>
       </section>
-      <CtaBanner image={images.auroraReflection} />
     </>
   );
 }

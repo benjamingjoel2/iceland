@@ -11,7 +11,6 @@ import { ListCard, OffsetImageText, WideImage } from "@/components/sections/Bloc
 import { ImageFlick } from "@/components/sections/ImageFlick";
 import { CardFlick } from "@/components/sections/CardFlick";
 import { SectionTitle } from "@/components/sections/SectionTitle";
-import { CtaBanner } from "@/components/sections/CtaBanner";
 import { GridLines } from "@/components/ui/GridLines";
 import { PlaceholderFlag } from "@/components/ui/Flag";
 import { ParallaxImage } from "@/components/motion/ParallaxImage";
@@ -132,8 +131,6 @@ export default async function LodgePage({ params }: PageProps<"/lodges/[slug]">)
           </div>
         </section>
       ) : null}
-
-      <CtaBanner image={l.feature} />
     </>
   );
 }

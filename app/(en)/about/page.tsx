@@ -7,7 +7,6 @@ import { aboutTabs } from "@/lib/nav";
 import { PageHero } from "@/components/sections/PageHero";
 import { TabBar } from "@/components/sections/TabBar";
 import { FourUp, Statement } from "@/components/sections/Blocks";
-import { CtaBanner } from "@/components/sections/CtaBanner";
 import { GridLines } from "@/components/ui/GridLines";
 import { ParallaxImage } from "@/components/motion/ParallaxImage";
 import { Reveal } from "@/components/motion/Reveal";
@@ -77,7 +76,6 @@ export default function AboutPage() {
           { image: journeys[0].card, label: "Journeys", href: "/journeys" },
         ]}
       />
-      <CtaBanner image={images.glacierLagoon} />
     </>
   );
 }
