@@ -3,7 +3,7 @@ import { brand } from "@/config/site";
 import { journeys } from "@/data/journeys";
 import { lodges } from "@/data/lodges";
 import { images } from "@/data/images";
-import { HomeHero } from "@/components/sections/HomeHero";
+import { GiantHero } from "@/components/sections/GiantHero";
 import { IntroStatement } from "@/components/sections/IntroStatement";
 import { SeasonsBlock } from "@/components/sections/SeasonsBlock";
 import { SectionTitle } from "@/components/sections/SectionTitle";
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <HomeHero />
+      <GiantHero word="Iceland" />
       <IntroStatement
         eyebrow={brand.eyebrow}
         text="Where the Arctic Circle touches the land and the island is still being made: fire beneath, ice above and the North Atlantic all around."
